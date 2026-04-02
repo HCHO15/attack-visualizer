@@ -353,17 +353,16 @@ window.addEventListener("load", () => {
             ctx.lineTo(x, h);
             ctx.stroke();
 
-            // アイコン配置
+            // アイコン配置（位置を保存）
             const iconX = x - 20;
             const iconY = h - 60;
             placeIcon(c, iconX, iconY);
 
-            // ★ 攻撃力をアイコンの下に描画
+            // ★ 攻撃力をアイコンの下に描画（iconX/Y に同期）
             ctx.fillStyle = "#0033aa";
             ctx.font = "14px sans-serif";
             ctx.textAlign = "center";
-            ctx.fillText(c.atk, x, iconY + 60); 
-            // x は中央揃え、iconY+60 はアイコンの下
+            ctx.fillText(c.atk, iconX + 20, iconY + 60);
         });
 }
 
