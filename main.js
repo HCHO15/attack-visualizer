@@ -71,8 +71,8 @@ window.addEventListener("load", () => {
             iconX: null,
             iconY: null,
             detail: {
-                固有武器: "固有4レベル50",
-                絆: "30.20.1",
+                固有武器: "固有4レベル60",
+                絆: "30.10.1",
                 WB: "25",
                 NS: "10",
                 PS: "10",
@@ -115,8 +115,8 @@ window.addEventListener("load", () => {
             iconX: null,
             iconY: null,
             detail: {
-                固有武器: "固有4レベル20",
-                絆: "30.10.1",
+                固有武器: "固有4<strong>レベル20</strong>",
+                絆: "30.<strong>10</strong>.1",
                 WB: "0",
                 NS: "10",
                 PS: "10",
@@ -137,8 +137,8 @@ window.addEventListener("load", () => {
     iconX: null,
     iconY: null,
     detail: {
-        固有武器: "固有4レベル29",
-        絆: "30.1.1",
+        固有武器: "固有4<strong>レベル29</strong>",
+        絆: "30.<strong>1</strong>.1",
         WB: "0",
         NS: "10",
         PS: "10",
@@ -156,7 +156,7 @@ window.addEventListener("load", () => {
     iconX: null,
     iconY: null,
     detail: {
-        固有武器: "固有4レベル29",
+        固有武器: "固有4<strong>レベル29</strong>",
         絆: "20.10.1",
         WB: "0",
         NS: "10",
@@ -175,8 +175,8 @@ window.addEventListener("load", () => {
     iconX: null,
     iconY: null,
     detail: {
-        固有武器: "固有4レベル30",
-        絆: "25.1.1",
+        固有武器: "固有4<strong>レベル30</strong>",
+        絆: "<strong>25</strong>.1.1",
         WB: "0",
         NS: "10",
         PS: "10",
@@ -194,9 +194,9 @@ window.addEventListener("load", () => {
     iconX: null,
     iconY: null,
     detail: {
-        固有武器: "固有4レベル60",
-        絆: "50.50.1",
-        WB: "25",
+        固有武器: "固有4<strong>レベル60</strong>",
+        絆: "<strong>50</strong>.<strong>50</strong>.1",
+        WB: "<strong>25</strong>",
         NS: "10",
         PS: "10",
         装備: "10.10.10.T2",
@@ -236,7 +236,7 @@ window.addEventListener("load", () => {
     iconX: null,
     iconY: null,
     detail: {
-        固有武器: "固有4レベル48",
+        固有武器: "固有4<strong>レベル48</strong>",
         絆: "30.20.1",
         WB: "0",
         NS: "10",
@@ -255,8 +255,8 @@ window.addEventListener("load", () => {
     iconX: null,
     iconY: null,
     detail: {
-        固有武器: "固有4レベル50",
-        絆: "25.20.1",
+        固有武器: "固有4<strong>レベル50</strong>",
+        絆: "<strong>25</strong>.<strong>20</strong>.1",
         WB: "0",
         NS: "10",
         PS: "10",
@@ -274,8 +274,8 @@ window.addEventListener("load", () => {
     iconX: null,
     iconY: null,
     detail: {
-        固有武器: "固有4レベル60",
-        絆: "30.1.1",
+        固有武器: "固有4<strong>レベル60</strong>",
+        絆: "30.<strong>1</strong>.1",
         WB: "0",
         NS: "10",
         PS: "10",
@@ -293,8 +293,8 @@ window.addEventListener("load", () => {
     iconX: null,
     iconY: null,
     detail: {
-        固有武器: "固有4レベル60",
-        絆: "40.1.1",
+        固有武器: "固有4<strong>レベル60</strong>",
+        絆: "<strong>40</strong>.<strong>1</strong>.1",
         WB: "0",
         NS: "10",
         PS: "10",
@@ -332,7 +332,7 @@ window.addEventListener("load", () => {
             iconX: null,
             iconY: null,
             detail: {
-                固有武器: "固有4レベル14",
+                固有武器: "固有4<strong>レベル14</strong>",
                 絆: "30.30.1",
                 WB: "0",
                 NS: "10",
@@ -353,7 +353,7 @@ window.addEventListener("load", () => {
                 固有武器: "固有4レベル40",
                 絆: "30.30.1",
                 WB: "0",
-                NS: "3",
+                NS: "<strong>3</strong>",
                 PS: "10",
                 装備: "10.10.10",
                 SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
@@ -371,7 +371,7 @@ window.addEventListener("load", () => {
                 固有武器: "固有4レベル40",
                 絆: "30.30.1",
                 WB: "0",
-                NS: "3",
+                NS: "<strong>3</strong>",
                 PS: "10",
                 装備: "8.10.10",
                 SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
@@ -414,7 +414,7 @@ window.addEventListener("load", () => {
     iconX: null,
     iconY: null,
     detail: {
-        固有武器: "固有4レベル20",
+        固有武器: "固有4<strong>レベル20</strong>",
         絆: "30.20.1",
         WB: "0",
         NS: "10",
@@ -435,7 +435,7 @@ window.addEventListener("load", () => {
     iconY: null,
     detail: {
         固有武器: "固有4レベル60",
-        絆: "50.50.1",
+        絆: "<strong>50</strong>.<strong>50</strong>.1",
         WB: "0",
         NS: "10",
         PS: "10",
@@ -456,7 +456,7 @@ window.addEventListener("load", () => {
     detail: {
         固有武器: "固有4レベル60",
         絆: "30.30.1",
-        WB: "25",
+        WB: "<strong>25</strong>",
         NS: "10",
         PS: "10",
         装備: "10.10.10",
@@ -474,10 +474,10 @@ window.addEventListener("load", () => {
     iconX: null,
     iconY: null,
     detail: {
-        固有武器: "固有4レベル1",
+        固有武器: "固有4<strong>レベル1</strong>",
         絆: "30.20.1",
         WB: "0",
-        NS: "1",
+        NS: "<strong>1</strong>",
         PS: "10",
         装備: "10.10.10",
         SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
@@ -494,10 +494,10 @@ window.addEventListener("load", () => {
     iconX: null,
     iconY: null,
     detail: {
-        固有武器: "固有4レベル1",
+        固有武器: "固有4<strong>レベル1</strong>",
         絆: "30.20.1",
         WB: "0",
-        NS: "1",
+        NS: "<strong>1</strong>",
         PS: "10",
         装備: "8.10.10",
         SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
@@ -514,10 +514,10 @@ window.addEventListener("load", () => {
     iconX: null,
     iconY: null,
     detail: {
-        固有武器: "固有4レベル1",
+        固有武器: "固有4<strong>レベル1</strong>",
         絆: "20.1.1",
         WB: "0",
-        NS: "1",
+        NS: "<strong>1</strong>",
         PS: "10",
         装備: "9.10.10",
         SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
