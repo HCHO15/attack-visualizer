@@ -90,6 +90,7 @@ window.addEventListener("load", () => {
     atk: 18177,
     type: "indicator",
     iconPath: "tsurugi.png",
+    badgeText: "EX", 
     visible: true,
     iconX: null,
     iconY: null,
@@ -226,6 +227,7 @@ window.addEventListener("load", () => {
     atk: 13178,
     type: "target",
     iconPath: "nonomi.png",
+    badgeText: "NS", 
     visible: true,
     iconX: null,
     iconY: null,
@@ -245,6 +247,7 @@ window.addEventListener("load", () => {
     atk: 14306,
     type: "target",
     iconPath: "nonomi.png",
+    badgeText: "NS", 
     visible: true,
     iconX: null,
     iconY: null,
@@ -264,6 +267,7 @@ window.addEventListener("load", () => {
     atk: 14264,
     type: "target",
     iconPath: "nonomi.png",
+    badgeText: "NS", 
     visible: true,
     iconX: null,
     iconY: null,
@@ -283,6 +287,7 @@ window.addEventListener("load", () => {
     atk: 11574,
     type: "target",
     iconPath: "nonomi.png",
+    badgeText: "NS", 
     visible: true,
     iconX: null,
     iconY: null,
@@ -302,6 +307,7 @@ window.addEventListener("load", () => {
     atk: 11269,
     type: "target",
     iconPath: "nonomi.png",
+    badgeText: "NS", 
     visible: true,
     iconX: null,
     iconY: null,
@@ -321,6 +327,7 @@ window.addEventListener("load", () => {
     atk: 11242,
     type: "target",
     iconPath: "nonomi.png",
+    badgeText: "NS", 
     visible: true,
     iconX: null,
     iconY: null,
@@ -654,6 +661,14 @@ ctx.fillText(text, tx, ty + 5);
         div.style.left = x + "px";
         div.style.top = y + "px";
         div.style.backgroundImage = `url(${char.iconPath})`;
+
+        // ★ 右下バッジ（例：NS）
+        if (char.badgeText) {
+            const badge = document.createElement("div");
+            badge.className = "icon-badge";
+            badge.textContent = char.badgeText;
+            div.appendChild(badge);
+        }
 
         div.addEventListener("mouseenter", (e) => showTooltip(e, char));
         div.addEventListener("mouseleave", hideTooltip);
