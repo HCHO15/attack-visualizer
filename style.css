@@ -80,6 +80,7 @@ body {
     display: block;
     margin-bottom: 4px;
     cursor: pointer;
+    text-align: left
 }
 
 /* Tooltip */
