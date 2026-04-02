@@ -371,7 +371,7 @@ window.addEventListener("load", () => {
 
             // アイコン
             const iconX = rightX - 20;
-            const iconY = h - 60;
+            const iconY = h - 90;
             placeIcon(c, iconX, iconY);
 
             // ★ 攻撃力数字（枠付き）
