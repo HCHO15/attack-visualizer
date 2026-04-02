@@ -131,6 +131,7 @@ window.addEventListener("load", () => {
             atk: 15038,
             type: "target",
             iconPath: "mutsuki_newyear.png",
+            highlight: true,
             visible: true,
             iconX: null,
             iconY: null,
@@ -207,6 +208,7 @@ window.addEventListener("load", () => {
             type: "target",
             iconPath: "nonomi.png",
             badgeText: "NS",
+            highlight: true,
             visible: true,
             iconX: null,
             iconY: null,
@@ -663,6 +665,10 @@ ctx.fillText(text, tx, ty + 5);
         div.style.left = x + "px";
         div.style.top = y + "px";
         div.style.backgroundImage = `url(${char.iconPath})`;
+        // ★ 特定キャラだけ黄色枠
+        if (char.highlight) {
+            div.classList.add("icon-highlight");
+        }
 
         // ★ 右下バッジ（例：NS）
         if (char.badgeText) {
