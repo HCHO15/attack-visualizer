@@ -90,3 +90,22 @@ body {
 .icon-blue { background: #6fa8dc; }
 .icon-red  { background: #e06666; }
 .icon-green{ background: #93c47d; }
+
+#character-list {
+    display: inline-block;
+    vertical-align: top;
+    width: 200px;
+    height: 120px; /* ← 縦に短くしてスクロール */
+    margin-left: 20px;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #fff;
+    overflow-y: auto; /* ← スクロール可能 */
+    font-size: 13px;
+}
+#character-list label {
+    display: block;
+    margin-bottom: 4px;
+    cursor: pointer;
+}
