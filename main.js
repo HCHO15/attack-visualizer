@@ -108,7 +108,7 @@ window.addEventListener("load", () => {
         // ジュンコ（target）
         {
             name: "ジュンコ",
-            atk: 11135,
+            atk: 11197,
             type: "target",
             iconPath: "junko.png",
             visible: true,
@@ -116,7 +116,7 @@ window.addEventListener("load", () => {
             iconY: null,
             detail: {
                 固有武器: "固有4レベル20",
-                絆: "30.1.1",
+                絆: "30.10.1",
                 WB: "0",
                 NS: "10",
                 PS: "10",
@@ -124,6 +124,184 @@ window.addEventListener("load", () => {
                 SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
             }
         },
+        // -----------------------------
+// ジュンコ（target）4体
+// -----------------------------
+{
+    name: "ジュンコ",
+    groupName: "ジュンコ",
+    atk: 11284,
+    type: "target",
+    iconPath: "junko.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有4レベル29",
+        絆: "30.1.1",
+        WB: "0",
+        NS: "10",
+        PS: "10",
+        装備: "10.10.10.T2",
+        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+    }
+},
+{
+    name: "ジュンコ",
+    groupName: "ジュンコ",
+    atk: 11279,
+    type: "target",
+    iconPath: "junko.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有4レベル29",
+        絆: "20.10.1",
+        WB: "0",
+        NS: "10",
+        PS: "10",
+        装備: "10.10.10.T2",
+        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+    }
+},
+{
+    name: "ジュンコ",
+    groupName: "ジュンコ",
+    atk: 11284,
+    type: "target",
+    iconPath: "junko.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有4レベル30",
+        絆: "25.1.1",
+        WB: "0",
+        NS: "10",
+        PS: "10",
+        装備: "10.10.10.T2",
+        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+    }
+},
+{
+    name: "ジュンコ",
+    groupName: "ジュンコ",
+    atk: 12469,
+    type: "target",
+    iconPath: "junko.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有4レベル60",
+        絆: "50.50.1",
+        WB: "25",
+        NS: "10",
+        PS: "10",
+        装備: "10.10.10.T2",
+        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+    }
+},
+
+// -----------------------------
+// イオリ（target）5体
+// -----------------------------
+{
+    name: "イオリ",
+    groupName: "イオリ",
+    atk: 11416,
+    type: "target",
+    iconPath: "iori.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有4レベル60",
+        絆: "30.20.1",
+        WB: "0",
+        NS: "10",
+        PS: "10",
+        装備: "10.10.10.T2",
+        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+    }
+},
+{
+    name: "イオリ",
+    groupName: "イオリ",
+    atk: 11276,
+    type: "target",
+    iconPath: "iori.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有4レベル48",
+        絆: "30.20.1",
+        WB: "0",
+        NS: "10",
+        PS: "10",
+        装備: "10.10.10.T2",
+        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+    }
+},
+{
+    name: "イオリ",
+    groupName: "イオリ",
+    atk: 11276,
+    type: "target",
+    iconPath: "iori.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有4レベル50",
+        絆: "25.20.1",
+        WB: "0",
+        NS: "10",
+        PS: "10",
+        装備: "10.10.10.T2",
+        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+    }
+},
+{
+    name: "イオリ",
+    groupName: "イオリ",
+    atk: 11276,
+    type: "target",
+    iconPath: "iori.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有4レベル60",
+        絆: "30.1.1",
+        WB: "0",
+        NS: "10",
+        PS: "10",
+        装備: "10.10.10.T2",
+        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+    }
+},
+{
+    name: "イオリ",
+    groupName: "イオリ",
+    atk: 11279,
+    type: "target",
+    iconPath: "iori.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有4レベル60",
+        絆: "40.1.1",
+        WB: "0",
+        NS: "10",
+        PS: "10",
+        装備: "10.10.10.T2",
+        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+    }
+},
 
         // ★ ムツキ（正月）4人（target）
         {
