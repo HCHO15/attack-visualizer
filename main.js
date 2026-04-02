@@ -151,9 +151,6 @@ window.addEventListener("load", () => {
         drawTargets();
     }
 
-    // -----------------------------
-    // 数直線（仮：線形のまま）
-    // -----------------------------
     function drawNumberLine() {
         const w = canvas.width;
         const h = canvas.height;
@@ -166,55 +163,37 @@ window.addEventListener("load", () => {
         ctx.stroke();
     }
 
-    // 攻撃力 → X座標（非線形スケール：密集部を広げ、疎な部を圧縮）
-
-    // 攻撃力 → X座標（非線形スケール：密集部を広げ、疎な部を圧縮）
-function atkToX(atk) {
-    const leftMargin = canvas.width * 0.20;   // 左20%
-    const rightMargin = canvas.width * 0.20;  // 右20%
+    // 攻撃力 → X座標（非線形スケール：大小関係を絶対に維持）
+    function atkToX(atk) {
+    const leftMargin = canvas.width * 0.20;
+    const rightMargin = canvas.width * 0.20;
     const usableWidth = canvas.width - leftMargin - rightMargin;
 
-    // 1. 可視キャラのみで昇順ソート
+    // 1. 可視キャラを昇順に並べる
     const sorted = [...characters]
         .filter(c => c.visible)
         .sort((a, b) => a.atk - b.atk);
 
-    // 2. rank（0〜1）
-    const index = sorted.findIndex(c => c.atk === atk);
-    const rank = index / (sorted.length - 1);
-
-    // 3. 局所差分補正
-    let localWeight = 1;
-    if (index > 0 && index < sorted.length - 1) {
-        const prev = sorted[index - 1].atk;
-        const next = sorted[index + 1].atk;
-        const localDiff = Math.min(atk - prev, next - atk);
-        localWeight = 1 + (200 / (localDiff + 1));
+    // 2. 各キャラの「間隔」を計算（密集部は大きく、疎な部は小さく）
+    const gaps = [];
+    for (let i = 0; i < sorted.length - 1; i++) {
+        const diff = sorted[i + 1].atk - sorted[i].atk;
+        // diff が小さいほど gap を大きくする（広げる）
+        gaps.push(1 + (200 / (diff + 1)));
     }
 
-    // 4. 非線形変換
-    const nonlinear = Math.pow(rank, 0.7) * localWeight;
+    // 3. gap の累積和を作る（rank の代わり）
+    const cum = [0];
+    for (let i = 0; i < gaps.length; i++) {
+        cum.push(cum[i] + gaps[i]);
+    }
 
-    // 5. 全キャラの nonlinear の min/max を求める
-    const allNonlinear = sorted.map((c, i) => {
-        const r = i / (sorted.length - 1);
-        let lw = 1;
-        if (i > 0 && i < sorted.length - 1) {
-            const p = sorted[i - 1].atk;
-            const n = sorted[i + 1].atk;
-            const d = Math.min(sorted[i].atk - p, n - sorted[i].atk);
-            lw = 1 + (200 / (d + 1));
-        }
-        return Math.pow(r, 0.7) * lw;
-    });
+    // 4. 0〜1 に正規化
+    const minC = Math.min(...cum);
+    const maxC = Math.max(...cum);
+    const normalized = (cum[sorted.findIndex(c => c.atk === atk)] - minC) / (maxC - minC);
 
-    const minNL = Math.min(...allNonlinear);
-    const maxNL = Math.max(...allNonlinear);
-
-    // 6. 0〜1 に正規化
-    const normalized = (nonlinear - minNL) / (maxNL - minNL);
-
-    // 7. 左右20%を余白にして配置
+    // 5. 左右20%を余白にして配置
     return leftMargin + normalized * usableWidth;
 }
 
