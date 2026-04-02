@@ -6,52 +6,86 @@ window.addEventListener("load", () => {
 
     // キャラデータ（固定）
     const characters = [
-        {
-            name: "シロコ＊テラー（指標1）",
-            atk: 11284,
-            type: "indicator",
-            iconPath: "sirokoterror.png",
-            detail: {
-                固有武器: "固有4レベル60",
-                絆: "50.1.1",
-                WB: "25",
-                NS: "10",
-                PS: "10",
-                装備: "10.10.10",
-                SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-            }
-        },
-        {
-            name: "シロコ＊テラー（指標2）",
-            atk: 11102,
-            type: "indicator",
-            iconPath: "sirokoterror.png",
-            detail: {
-                固有武器: "固有3レベル50",
-                絆: "50.1.1",
-                WB: "25",
-                NS: "10",
-                PS: "10",
-                装備: "10.10.10",
-                SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-            }
-        },
-        {
-            name: "ジュンコ（調整対象）",
-            atk: 11135,
-            type: "target",
-            iconPath: "junko.png",
-            detail: {
-                固有武器: "固有4レベル20",
-                絆: "30.1.1",
-                WB: "0",
-                NS: "10",
-                PS: "10",
-                装備: "10.10.10",
-                SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-            }
+    {
+        name: "シロコ＊テラー（指標1）",
+        atk: 11284,
+        type: "indicator",
+        iconPath: "sirokoterror.png",
+        detail: {
+            固有武器: "固有4レベル60",
+            絆: "50.1.1",
+            WB: "25",
+            NS: "10",
+            PS: "10",
+            装備: "10.10.10",
+            SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
         }
-    ];
+    },
+    {
+        name: "シロコ＊テラー（指標2）",
+        atk: 11102,
+        type: "indicator",
+        iconPath: "sirokoterror.png",
+        detail: {
+            固有武器: "固有3レベル50",
+            絆: "50.1.1",
+            WB: "25",
+            NS: "10",
+            PS: "10",
+            装備: "10.10.10",
+            SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+        }
+    },
+
+    // ★★★ 新規追加キャラ（指標） ★★★
+    {
+        name: "ツルギ（指標1）",
+        atk: 18177,
+        type: "indicator",
+        iconPath: "tsurugi.png",
+        detail: {
+            固有武器: "固有4レベル60",
+            絆: "30.20.1",
+            WB: "25",
+            NS: "10",
+            PS: "10",
+            装備: "10.10.10",
+            SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+        }
+    },
+    {
+        name: "ツルギ（指標2）",
+        atk: 18007,
+        type: "indicator",
+        iconPath: "tsurugi.png",
+        detail: {
+            固有武器: "固有4レベル50",
+            絆: "30.20.1",
+            WB: "25",
+            NS: "10",
+            PS: "10",
+            装備: "10.10.10",
+            SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+        }
+    },
+
+    // ★★★ 調整対象キャラ（既存） ★★★
+    {
+        name: "ジュンコ（調整対象）",
+        atk: 11135,
+        type: "target",
+        iconPath: "junko.png",
+        detail: {
+            固有武器: "固有4レベル20",
+            絆: "30.1.1",
+            WB: "0",
+            NS: "10",
+            PS: "10",
+            装備: "10.10.10",
+            SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+        }
+    }
+];
 
     // -----------------------------
     // Canvas 初期化
@@ -91,12 +125,41 @@ window.addEventListener("load", () => {
     }
 
     // 攻撃力 → X座標（線形）
-    function atkToX(atk) {
-        const minAtk = 10000;
-        const maxAtk = 13000;
-        const w = canvas.width - 100;
-        return 50 + ((atk - minAtk) / (maxAtk - minAtk)) * w;
+    // 攻撃力 → X座標（非線形スケール：密集部を広げ、疎な部を圧縮）
+function atkToX(atk) {
+    const w = canvas.width - 100; // 左右50pxずつ余白
+
+    // 1. 攻撃力を昇順に並べる
+    const sorted = [...characters].sort((a, b) => a.atk - b.atk);
+
+    // 2. atk の順位（0〜1）を求める
+    const index = sorted.findIndex(c => c.atk === atk);
+    const rank = index / (sorted.length - 1);
+
+    // 3. 隣接差分を計算（密集部を広げるための係数）
+    let localWeight = 1;
+    if (index > 0 && index < sorted.length - 1) {
+        const prev = sorted[index - 1].atk;
+        const next = sorted[index + 1].atk;
+        const diffPrev = atk - prev;
+        const diffNext = next - atk;
+
+        // 差が小さいほど weight を大きくする（広げる）
+        const localDiff = Math.min(diffPrev, diffNext);
+        localWeight = 1 + (200 / (localDiff + 1)); 
+        // diff が小さい → weight が大きい → 広がる
     }
+
+    // 4. 非線形変換（rank をベースに局所補正）
+    const nonlinear = Math.pow(rank, 0.7) * localWeight;
+
+    // 5. 正規化（0〜1に収める）
+    const maxNonlinear = Math.pow(1, 0.7) * (1 + 200 / 1);
+    const normalized = nonlinear / maxNonlinear;
+
+    // 6. キャンバス座標に変換
+    return 50 + normalized * w;
+}
 
     // -----------------------------
     // 指標キャラの縦帯
