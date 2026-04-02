@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>攻撃力可視化ツール（UI土台）</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="container">
+
+    <h1 id="title">攻撃力可視化ツール（UI土台）</h1>
+
+    <div id="canvas-wrapper">
+        <!-- 描画用キャンバス -->
+        <canvas id="main-canvas"></canvas>
+
+        <!-- アイコン配置レイヤー（Canvasの上に重ねる） -->
+        <div id="icon-layer"></div>
+    </div>
+
+    <div id="controls">
+        <button id="add-character-btn">キャラを追加</button>
+    </div>
+
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
