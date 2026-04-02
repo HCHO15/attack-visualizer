@@ -12,6 +12,8 @@ window.addEventListener("load", () => {
             type: "indicator",
             iconPath: "sirokoterror.png",
             visible: true,
+            iconX: null,
+            iconY: null,
             detail: {
                 固有武器: "固有4レベル60",
                 絆: "50.1.1",
@@ -28,6 +30,8 @@ window.addEventListener("load", () => {
             type: "indicator",
             iconPath: "sirokoterror.png",
             visible: true,
+            iconX: null,
+            iconY: null,
             detail: {
                 固有武器: "固有3レベル50",
                 絆: "50.1.1",
@@ -38,12 +42,16 @@ window.addEventListener("load", () => {
                 SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
             }
         },
+
+        // ツルギ（指標）
         {
             name: "ツルギ",
-            atk: 14306,
+            atk: 18177,
             type: "indicator",
             iconPath: "tsurugi.png",
             visible: true,
+            iconX: null,
+            iconY: null,
             detail: {
                 固有武器: "固有4レベル60",
                 絆: "30.20.1",
@@ -56,13 +64,15 @@ window.addEventListener("load", () => {
         },
         {
             name: "ツルギ",
-            atk: 14172,
+            atk: 18007,
             type: "indicator",
             iconPath: "tsurugi.png",
             visible: true,
+            iconX: null,
+            iconY: null,
             detail: {
-                固有武器: "固有4レベル60",
-                絆: "30.10.1",
+                固有武器: "固有4レベル50",
+                絆: "30.20.1",
                 WB: "25",
                 NS: "10",
                 PS: "10",
@@ -70,13 +80,36 @@ window.addEventListener("load", () => {
                 SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
             }
         },
-        // ★★★ 新規追加キャラ（ムツキ正月） ★★★
+
+        // ジュンコ（target）
+        {
+            name: "ジュンコ",
+            atk: 11135,
+            type: "target",
+            iconPath: "junko.png",
+            visible: true,
+            iconX: null,
+            iconY: null,
+            detail: {
+                固有武器: "固有4レベル20",
+                絆: "30.1.1",
+                WB: "0",
+                NS: "10",
+                PS: "10",
+                装備: "10.10.10",
+                SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+            }
+        },
+
+        // ★ ムツキ（正月）4人（target）
         {
             name: "ムツキ（正月）",
             atk: 15038,
             type: "target",
             iconPath: "mutsuki_newyear.png",
             visible: true,
+            iconX: null,
+            iconY: null,
             detail: {
                 固有武器: "固有4レベル40",
                 絆: "30.30.1",
@@ -93,6 +126,8 @@ window.addEventListener("load", () => {
             type: "target",
             iconPath: "mutsuki_newyear.png",
             visible: true,
+            iconX: null,
+            iconY: null,
             detail: {
                 固有武器: "固有4レベル14",
                 絆: "30.30.1",
@@ -109,6 +144,8 @@ window.addEventListener("load", () => {
             type: "target",
             iconPath: "mutsuki_newyear.png",
             visible: true,
+            iconX: null,
+            iconY: null,
             detail: {
                 固有武器: "固有4レベル40",
                 絆: "30.30.1",
@@ -125,47 +162,35 @@ window.addEventListener("load", () => {
             type: "target",
             iconPath: "mutsuki_newyear.png",
             visible: true,
+            iconX: null,
+            iconY: null,
             detail: {
                 固有武器: "固有4レベル40",
-        絆: "30.30.1",
-        WB: "0",
-        NS: "3",
-        PS: "10",
-        装備: "8.10.10",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
+                絆: "30.30.1",
+                WB: "0",
+                NS: "3",
+                PS: "10",
+                装備: "8.10.10",
+                SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+            }
+        },
 
-// ★★★ 新規追加キャラ（ノノミ） ★★★
+        // ★ ノノミ（target）
         {
-    name: "ノノミ",
-    atk: 13971,
-    type: "target",
-    iconPath: "nonomi.png",
-    visible: true,
-    detail: {
-        固有武器: "固有4レベル60",
-        絆: "30.20.1",
-        WB: "0",
-        NS: "10",
-        PS: "10",
-        装備: "10.10.10.T2",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-        {
-            name: "ジュンコ",
-            atk: 11135,
+            name: "ノノミ",
+            atk: 13971,
             type: "target",
-            iconPath: "junko.png",
+            iconPath: "nonomi.png",
             visible: true,
+            iconX: null,
+            iconY: null,
             detail: {
-                固有武器: "固有4レベル20",
-                絆: "30.1.1",
+                固有武器: "固有4レベル60",
+                絆: "30.20.1",
                 WB: "0",
                 NS: "10",
                 PS: "10",
-                装備: "10.10.10",
+                装備: "10.10.10.T2",
                 SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
             }
         }
@@ -225,9 +250,68 @@ window.addEventListener("load", () => {
         drawAll();
     }
 
+    // -----------------------------
+    // 非線形スケール（大小関係を絶対に維持）
+    // -----------------------------
+    function atkToX(atk) {
+        const leftMargin = canvas.width * 0.20;
+        const rightMargin = canvas.width * 0.20;
+        const usableWidth = canvas.width - leftMargin - rightMargin;
+
+        const sorted = [...characters]
+            .filter(c => c.visible)
+            .sort((a, b) => a.atk - b.atk);
+
+        const gaps = [];
+        for (let i = 0; i < sorted.length - 1; i++) {
+            const diff = sorted[i + 1].atk - sorted[i].atk;
+            gaps.push(1 + (200 / (diff + 1)));
+        }
+
+        const cum = [0];
+        for (let i = 0; i < gaps.length; i++) {
+            cum.push(cum[i] + gaps[i]);
+        }
+
+        const minC = Math.min(...cum);
+        const maxC = Math.max(...cum);
+
+        const idx = sorted.findIndex(c => c.atk === atk);
+        const normalized = (cum[idx] - minC) / (maxC - minC);
+
+        return leftMargin + normalized * usableWidth;
+    }
+
+    // -----------------------------
+    // ターゲットアイコン自動配置（円形）
+    // -----------------------------
+    function autoPlaceTargetIcons() {
+        const targets = characters.filter(c => c.type === "target" && c.visible);
+
+        const angleStep = (Math.PI * 2) / targets.length;
+        const radius = 70;
+
+        targets.forEach((c, i) => {
+            if (c.iconX != null && c.iconY != null) return;
+
+            const px = atkToX(c.atk);
+            const py = canvas.height / 2;
+
+            const angle = i * angleStep;
+
+            c.iconX = px + radius * Math.cos(angle);
+            c.iconY = py + radius * Math.sin(angle);
+        });
+    }
+
+    // -----------------------------
+    // 描画
+    // -----------------------------
     function drawAll() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         iconLayer.innerHTML = "";
+
+        autoPlaceTargetIcons();
 
         drawNumberLine();
         drawIndicators();
@@ -246,42 +330,8 @@ window.addEventListener("load", () => {
         ctx.stroke();
     }
 
-    // 攻撃力 → X座標（非線形スケール：大小関係を絶対に維持）
-    function atkToX(atk) {
-    const leftMargin = canvas.width * 0.20;
-    const rightMargin = canvas.width * 0.20;
-    const usableWidth = canvas.width - leftMargin - rightMargin;
-
-    // 1. 可視キャラを昇順に並べる
-    const sorted = [...characters]
-        .filter(c => c.visible)
-        .sort((a, b) => a.atk - b.atk);
-
-    // 2. 各キャラの「間隔」を計算（密集部は大きく、疎な部は小さく）
-    const gaps = [];
-    for (let i = 0; i < sorted.length - 1; i++) {
-        const diff = sorted[i + 1].atk - sorted[i].atk;
-        // diff が小さいほど gap を大きくする（広げる）
-        gaps.push(1 + (200 / (diff + 1)));
-    }
-
-    // 3. gap の累積和を作る（rank の代わり）
-    const cum = [0];
-    for (let i = 0; i < gaps.length; i++) {
-        cum.push(cum[i] + gaps[i]);
-    }
-
-    // 4. 0〜1 に正規化
-    const minC = Math.min(...cum);
-    const maxC = Math.max(...cum);
-    const normalized = (cum[sorted.findIndex(c => c.atk === atk)] - minC) / (maxC - minC);
-
-    // 5. 左右20%を余白にして配置
-    return leftMargin + normalized * usableWidth;
-}
-
     // -----------------------------
-    // 指標キャラの縦帯
+    // 指標キャラ
     // -----------------------------
     function drawIndicators() {
         const h = canvas.height;
@@ -309,54 +359,50 @@ window.addEventListener("load", () => {
     // 調整対象キャラ
     // -----------------------------
     function drawTargets() {
-    const h = canvas.height;
+        const h = canvas.height;
 
-    const targets = characters.filter(c => c.type === "target" && c.visible);
+        const targets = characters.filter(c => c.type === "target" && c.visible);
 
-    // ターゲットアイコンの縦配置
-    const startX = 80;
-    const startY = 80;
-    const gapY = 60; // アイコン間の縦間隔
+        targets.forEach((c) => {
+            const x = atkToX(c.atk);
+            const y = h / 2;
 
-    targets.forEach((c, i) => {
-        const x = atkToX(c.atk);
-        const y = h / 2 + (Math.random() * 20 - 10);
+            ctx.fillStyle = "#e06666";
+            ctx.beginPath();
+            ctx.arc(x, y, 6, 0, Math.PI * 2);
+            ctx.fill();
 
-        // プロット点
-        ctx.fillStyle = "#e06666";
-        ctx.beginPath();
-        ctx.arc(x, y, 6, 0, Math.PI * 2);
-        ctx.fill();
+            const iconX = c.iconX;
+            const iconY = c.iconY;
 
-        // アイコン位置（縦に並べる）
-        const iconX = startX;
-        const iconY = startY + i * gapY;
-        placeIcon(c, iconX, iconY);
+            placeIcon(c, iconX, iconY);
 
-        // アイコン中心
-        const sx = iconX + 20;
-        const sy = iconY + 20;
+            const sx = iconX + 20;
+            const sy = iconY + 20;
 
-        // 折れ線
-        const midX = sx + 40;
-        const midY = sy;
+            const midX = sx + 40;
+            const midY = sy;
 
-        ctx.strokeStyle = "#e06666";
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(sx, sy);
-        ctx.lineTo(midX, midY);
-        ctx.lineTo(x, y);
-        ctx.stroke();
-    });
-}
+            ctx.strokeStyle = "#e06666";
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(sx, sy);
+            ctx.lineTo(midX, midY);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+        });
+    }
 
     // -----------------------------
-    // アイコン配置（tooltip）
+    // アイコン配置（ドラッグ対応）
     // -----------------------------
     function placeIcon(char, x, y) {
         const div = document.createElement("div");
         div.className = "character-icon";
+
+        char.iconX = x;
+        char.iconY = y;
+
         div.style.left = x + "px";
         div.style.top = y + "px";
         div.style.backgroundImage = `url(${char.iconPath})`;
@@ -364,9 +410,27 @@ window.addEventListener("load", () => {
         div.addEventListener("mouseenter", (e) => showTooltip(e, char));
         div.addEventListener("mouseleave", hideTooltip);
 
-        div.addEventListener("click", (e) => {
-            e.stopPropagation();
-            showTooltip(e, char);
+        let dragging = false;
+        let offsetX = 0;
+        let offsetY = 0;
+
+        div.addEventListener("mousedown", (e) => {
+            dragging = true;
+            offsetX = e.offsetX;
+            offsetY = e.offsetY;
+        });
+
+        document.addEventListener("mousemove", (e) => {
+            if (!dragging) return;
+            char.iconX = e.pageX - offsetX;
+            char.iconY = e.pageY - offsetY;
+            div.style.left = char.iconX + "px";
+            div.style.top = char.iconY + "px";
+            drawAll();
+        });
+
+        document.addEventListener("mouseup", () => {
+            dragging = false;
         });
 
         iconLayer.appendChild(div);
