@@ -80,6 +80,29 @@ window.addEventListener("load", () => {
                 SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
             }
         },
+        
+// -----------------------------
+// ツルギ（EX発動）1体（indicator）
+// -----------------------------
+{
+    name: "ツルギ（EX発動）",
+    groupName: "ツルギ",
+    atk: 18177,
+    type: "indicator",
+    iconPath: "tsurugi.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有4レベル60",
+        絆: "30.20.1",
+        WB: "25",
+        NS: "10",
+        PS: "10",
+        装備: "10.10.10.T2",
+        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+    }
+},
 
         // ジュンコ（target）
         {
@@ -177,7 +200,7 @@ window.addEventListener("load", () => {
 
         // ★ ノノミ（target）
         {
-            name: "ノノミ",
+            name: "ノノミ(NS発動時)",
             atk: 13971,
             type: "target",
             iconPath: "nonomi.png",
@@ -193,20 +216,140 @@ window.addEventListener("load", () => {
                 装備: "10.10.10.T2",
                 SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
             }
-        }
+        },
+        // -----------------------------
+// ノノミ（NS発動）6体（target）
+// -----------------------------
+{
+    name: "ノノミ（NS発動）",
+    groupName: "ノノミ",
+    atk: 13178,
+    type: "target",
+    iconPath: "nonomi.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有4レベル20",
+        絆: "30.20.1",
+        WB: "0",
+        NS: "10",
+        PS: "10",
+        装備: "10.10.10.T2",
+        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+    }
+},
+{
+    name: "ノノミ（NS発動）",
+    groupName: "ノノミ",
+    atk: 14306,
+    type: "target",
+    iconPath: "nonomi.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有4レベル60",
+        絆: "50.50.1",
+        WB: "0",
+        NS: "10",
+        PS: "10",
+        装備: "10.10.10",
+        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+    }
+},
+{
+    name: "ノノミ（NS発動）",
+    groupName: "ノノミ",
+    atk: 14264,
+    type: "target",
+    iconPath: "nonomi.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有4レベル60",
+        絆: "30.30.1",
+        WB: "25",
+        NS: "10",
+        PS: "10",
+        装備: "10.10.10",
+        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+    }
+},
+{
+    name: "ノノミ（NS発動）",
+    groupName: "ノノミ",
+    atk: 11574,
+    type: "target",
+    iconPath: "nonomi.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有4レベル1",
+        絆: "30.20.1",
+        WB: "0",
+        NS: "1",
+        PS: "10",
+        装備: "10.10.10",
+        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+    }
+},
+{
+    name: "ノノミ（NS発動）",
+    groupName: "ノノミ",
+    atk: 11269,
+    type: "target",
+    iconPath: "nonomi.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有4レベル1",
+        絆: "30.20.1",
+        WB: "0",
+        NS: "1",
+        PS: "10",
+        装備: "8.10.10",
+        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+    }
+},
+{
+    name: "ノノミ（NS発動）",
+    groupName: "ノノミ",
+    atk: 11242,
+    type: "target",
+    iconPath: "nonomi.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有4レベル1",
+        絆: "20.1.1",
+        WB: "0",
+        NS: "1",
+        PS: "10",
+        装備: "9.10.10",
+        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+    }
+}
     ];
 
     // -----------------------------
     // キャラ名でグループ化
     // -----------------------------
     function groupCharactersByName() {
-        const groups = {};
-        characters.forEach(c => {
-            if (!groups[c.name]) groups[c.name] = [];
-            groups[c.name].push(c);
-        });
-        return groups;
-    }
+    const groups = {};
+    characters.forEach(c => {
+        const key = c.groupName || c.name; // ★ groupName があればそちらを使う
+        if (!groups[key]) groups[key] = [];
+        groups[key].push(c);
+    });
+    return groups;
+}
+
+
 
     // -----------------------------
     // キャラ一覧（表示/非表示）
