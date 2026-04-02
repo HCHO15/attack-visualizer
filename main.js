@@ -157,13 +157,49 @@ function drawIndicators() {
 
     // アイコン配置（画像対応）
     function placeIcon(char, x, y) {
-        const div = document.createElement("div");
-        div.className = "character-icon";
-        div.style.left = x + "px";
-        div.style.top = y + "px";
-        div.style.backgroundImage = `url(${char.iconPath})`;
-        div.title = char.name;
-        iconLayer.appendChild(div);
-        return div;
-    }
+    const div = document.createElement("div");
+    div.className = "character-icon";
+    div.style.left = x + "px";
+    div.style.top = y + "px";
+    div.style.backgroundImage = `url(${char.iconPath})`;
+
+    // Tooltip 表示
+    div.addEventListener("mouseenter", (e) => showTooltip(e, char));
+    div.addEventListener("mouseleave", hideTooltip);
+
+    // スマホ用（タップで表示）
+    div.addEventListener("click", (e) => {
+        e.stopPropagation();
+        showTooltip(e, char);
+    });
+
+    iconLayer.appendChild(div);
+    return div;
+}
 });
+
+const tooltip = document.getElementById("tooltip");
+
+function showTooltip(e, char) {
+    let html = `<strong>${char.name}</strong><br>`;
+    html += `攻撃力：${char.atk}<br>`;
+
+    for (const key in char.detail) {
+        html += `${key}：${char.detail[key]}<br>`;
+    }
+
+    tooltip.innerHTML = html;
+    tooltip.style.display = "block";
+
+    // 位置調整（アイコンの右側）
+    const rect = e.target.getBoundingClientRect();
+    tooltip.style.left = rect.right + 10 + "px";
+    tooltip.style.top = rect.top + "px";
+}
+
+function hideTooltip() {
+    tooltip.style.display = "none";
+}
+
+// スマホで画面タップしたら閉じる
+document.addEventListener("click", hideTooltip);
