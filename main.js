@@ -248,7 +248,7 @@ window.addEventListener("load", () => {
 {
     name: "イオリ",
     groupName: "イオリ",
-    atk: 11276,
+    atk: 11282,
     type: "target",
     iconPath: "iori.png",
     visible: true,
@@ -267,7 +267,7 @@ window.addEventListener("load", () => {
 {
     name: "イオリ",
     groupName: "イオリ",
-    atk: 11276,
+    atk: 11229,
     type: "target",
     iconPath: "iori.png",
     visible: true,
