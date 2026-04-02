@@ -47,8 +47,8 @@ body {
     border-radius: 6px;
     background-size: cover;
     background-position: center;
-    pointer-events: auto;
     cursor: pointer;
+    border: 2px solid #333;
 }
 
 #controls {
@@ -61,18 +61,28 @@ body {
     font-size: 14px;
 }
 
-.character-icon {
-    position: absolute;
-    width: 40px;
-    height: 40px;
+/* キャラ一覧（スクロール付き） */
+#character-list {
+    display: inline-block;
+    vertical-align: top;
+    width: 200px;
+    height: 120px;
+    margin-left: 20px;
+    padding: 6px;
+    border: 1px solid #ccc;
     border-radius: 6px;
-    background-size: cover;
-    background-position: center;
-    pointer-events: auto;
-    cursor: pointer;
-    border: 2px solid #333;
+    background: #fff;
+    overflow-y: auto;
+    font-size: 13px;
 }
 
+#character-list label {
+    display: block;
+    margin-bottom: 4px;
+    cursor: pointer;
+}
+
+/* Tooltip */
 #tooltip {
     position: absolute;
     background: rgba(255, 255, 255, 0.95);
@@ -85,27 +95,4 @@ body {
     white-space: nowrap;
     z-index: 9999;
     box-shadow: 0px 2px 6px rgba(0,0,0,0.2);
-}
-/* 仮アイコン色 */
-.icon-blue { background: #6fa8dc; }
-.icon-red  { background: #e06666; }
-.icon-green{ background: #93c47d; }
-
-#character-list {
-    display: inline-block;
-    vertical-align: top;
-    width: 200px;
-    height: 120px; /* ← 縦に短くしてスクロール */
-    margin-left: 20px;
-    padding: 6px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    background: #fff;
-    overflow-y: auto; /* ← スクロール可能 */
-    font-size: 13px;
-}
-#character-list label {
-    display: block;
-    margin-bottom: 4px;
-    cursor: pointer;
 }
