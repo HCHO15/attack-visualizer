@@ -206,6 +206,7 @@ window.addEventListener("load", () => {
             atk: 13971,
             type: "target",
             iconPath: "nonomi.png",
+            badgeText: "NS",
             visible: true,
             iconX: null,
             iconY: null,
