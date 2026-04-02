@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+    background: #f5f5f5;
+    font-family: sans-serif;
+}
+
+#container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 10px;
+}
+
+#title {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#canvas-wrapper {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+#main-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+#icon-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.character-icon {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    background-size: cover;
+    background-position: center;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+#controls {
+    margin-top: 15px;
+    text-align: center;
+}
+
+#add-character-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+}
