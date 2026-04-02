@@ -339,30 +339,66 @@ window.addEventListener("load", () => {
     characters
         .filter(c => c.type === "indicator" && c.visible)
         .forEach(c => {
-            const x = atkToX(c.atk);
+
+            // ★ 新仕様：縦帯は atk-50 〜 atk の範囲
+            const leftX = atkToX(c.atk - 50);
+            const rightX = atkToX(c.atk);
 
             // 縦帯
             ctx.fillStyle = "rgba(100,150,255,0.25)";
-            ctx.fillRect(x - 50, 0, 50, h);
+            ctx.fillRect(leftX, 0, rightX - leftX, h);
 
-            // 中央ライン
+            // 濃い縦線（攻撃力位置）
             ctx.strokeStyle = "#0033aa";
             ctx.lineWidth = 3;
             ctx.beginPath();
-            ctx.moveTo(x, 0);
-            ctx.lineTo(x, h);
+            ctx.moveTo(rightX, 0);
+            ctx.lineTo(rightX, h);
             ctx.stroke();
 
-            // アイコン配置（位置を保存）
-            const iconX = x - 20;
+            // アイコン
+            const iconX = rightX - 20;
             const iconY = h - 60;
             placeIcon(c, iconX, iconY);
 
-            // ★ 攻撃力をアイコンの下に描画（iconX/Y に同期）
-            ctx.fillStyle = "#0033aa";
+            // ★ 攻撃力数字（枠付き）
+            const text = String(c.atk);
             ctx.font = "14px sans-serif";
             ctx.textAlign = "center";
-            ctx.fillText(c.atk, iconX + 20, iconY + 60);
+
+            const tx = iconX + 20;
+            const ty = iconY + 60;
+
+            // 背景の丸角矩形
+            const paddingX = 6;
+            const paddingY = 4;
+            const textWidth = ctx.measureText(text).width;
+            const boxWidth = textWidth + paddingX * 2;
+            const boxHeight = 20;
+
+            ctx.fillStyle = "white";
+            ctx.strokeStyle = "#0033aa";
+            ctx.lineWidth = 1;
+
+            // 丸角矩形
+            const radius = 5;
+            ctx.beginPath();
+            ctx.moveTo(tx - boxWidth/2 + radius, ty - boxHeight/2);
+            ctx.lineTo(tx + boxWidth/2 - radius, ty - boxHeight/2);
+            ctx.quadraticCurveTo(tx + boxWidth/2, ty - boxHeight/2, tx + boxWidth/2, ty - boxHeight/2 + radius);
+            ctx.lineTo(tx + boxWidth/2, ty + boxHeight/2 - radius);
+            ctx.quadraticCurveTo(tx + boxWidth/2, ty + boxHeight/2, tx + boxWidth/2 - radius, ty + boxHeight/2);
+            ctx.lineTo(tx - boxWidth/2 + radius, ty + boxHeight/2);
+            ctx.quadraticCurveTo(tx - boxWidth/2, ty + boxHeight/2, tx - boxWidth/2, ty + boxHeight/2 - radius);
+            ctx.lineTo(tx - boxWidth/2, ty - boxHeight/2 + radius);
+            ctx.quadraticCurveTo(tx - boxWidth/2, ty - boxHeight/2, tx - boxWidth/2 + radius, ty - boxHeight/2);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+
+            // 数字
+            ctx.fillStyle = "#0033aa";
+            ctx.fillText(text, tx, ty + 5);
         });
 }
 
@@ -408,6 +444,44 @@ window.addEventListener("load", () => {
         ctx.lineTo(midX, midY);
         ctx.lineTo(px, py);
         ctx.stroke();
+
+        // ★ 攻撃力数字（枠付き）
+const text = String(c.atk);
+ctx.font = "14px sans-serif";
+ctx.textAlign = "center";
+
+const tx = iconX + 20;
+const ty = iconY + 60;
+
+// 背景の丸角矩形
+const paddingX = 6;
+const paddingY = 4;
+const textWidth = ctx.measureText(text).width;
+const boxWidth = textWidth + paddingX * 2;
+const boxHeight = 20;
+
+ctx.fillStyle = "white";
+ctx.strokeStyle = "#e06666";
+ctx.lineWidth = 1;
+
+const radius = 5;
+ctx.beginPath();
+ctx.moveTo(tx - boxWidth/2 + radius, ty - boxHeight/2);
+ctx.lineTo(tx + boxWidth/2 - radius, ty - boxHeight/2);
+ctx.quadraticCurveTo(tx + boxWidth/2, ty - boxHeight/2, tx + boxWidth/2, ty - boxHeight/2 + radius);
+ctx.lineTo(tx + boxWidth/2, ty + boxHeight/2 - radius);
+ctx.quadraticCurveTo(tx + boxWidth/2, ty + boxHeight/2, tx + boxWidth/2 - radius, ty + boxHeight/2);
+ctx.lineTo(tx - boxWidth/2 + radius, ty + boxHeight/2);
+ctx.quadraticCurveTo(tx - boxWidth/2, ty + boxHeight/2, tx - boxWidth/2, ty + boxHeight/2 - radius);
+ctx.lineTo(tx - boxWidth/2, ty - boxHeight/2 + radius);
+ctx.quadraticCurveTo(tx - boxWidth/2, ty - boxHeight/2, tx - boxWidth/2 + radius, ty - boxHeight/2);
+ctx.closePath();
+ctx.fill();
+ctx.stroke();
+
+// 数字
+ctx.fillStyle = "#e06666";
+ctx.fillText(text, tx, ty + 5);
     });
 }
 
@@ -429,27 +503,43 @@ window.addEventListener("load", () => {
         div.addEventListener("mouseleave", hideTooltip);
 
         let dragging = false;
-        let offsetX = 0;
-        let offsetY = 0;
+let dragStarted = false;
+let startX = 0;
+let startY = 0;
+let offsetX = 0;
+let offsetY = 0;
 
-        div.addEventListener("mousedown", (e) => {
-            dragging = true;
-            offsetX = e.offsetX;
-            offsetY = e.offsetY;
-        });
+div.addEventListener("mousedown", (e) => {
+    dragging = true;
+    dragStarted = false;
+    startX = e.pageX;
+    startY = e.pageY;
+    offsetX = e.offsetX;
+    offsetY = e.offsetY;
+});
 
-        document.addEventListener("mousemove", (e) => {
-            if (!dragging) return;
-            char.iconX = e.pageX - offsetX;
-            char.iconY = e.pageY - offsetY;
-            div.style.left = char.iconX + "px";
-            div.style.top = char.iconY + "px";
-            drawAll();
-        });
+document.addEventListener("mousemove", (e) => {
+    if (!dragging) return;
 
-        document.addEventListener("mouseup", () => {
-            dragging = false;
-        });
+    // ★ しきい値（3px）を超えたらドラッグ開始
+    if (!dragStarted) {
+        const dx = Math.abs(e.pageX - startX);
+        const dy = Math.abs(e.pageY - startY);
+        if (dx < 3 && dy < 3) return; // まだドラッグ扱いにしない
+        dragStarted = true;
+    }
+
+    char.iconX = e.pageX - offsetX;
+    char.iconY = e.pageY - offsetY;
+    div.style.left = char.iconX + "px";
+    div.style.top = char.iconY + "px";
+    drawAll();
+});
+
+document.addEventListener("mouseup", () => {
+    dragging = false;
+    dragStarted = false;
+});
 
         iconLayer.appendChild(div);
         return div;
@@ -459,20 +549,32 @@ window.addEventListener("load", () => {
     // Tooltip
     // -----------------------------
     function showTooltip(e, char) {
-        let html = `<strong>${char.name}</strong><br>`;
-        html += `攻撃力：${char.atk}<br>`;
+    let html = `<strong>${char.name}</strong><br>`;
+    html += `攻撃力：${char.atk}<br>`;
 
-        for (const key in char.detail) {
-            html += `${key}：${char.detail[key]}<br>`;
-        }
+    for (const key in char.detail) {
+        html += `${key}：${char.detail[key]}<br>`;
+    }
 
-        tooltip.innerHTML = html;
-        tooltip.style.display = "block";
+    tooltip.innerHTML = html;
+    tooltip.style.display = "block";
 
-        const rect = e.target.getBoundingClientRect();
+    const rect = e.target.getBoundingClientRect();
+    const iconCenterX = rect.left + rect.width / 2;
+
+    // ★ キャンバス右30%以内なら左側に表示
+    const canvasRightThreshold = canvas.width * 0.7;
+
+    if (iconCenterX > canvasRightThreshold) {
+        // 左側に表示
+        tooltip.style.left = (rect.left - tooltip.offsetWidth - 10) + "px";
+        tooltip.style.top = rect.top + "px";
+    } else {
+        // 右側に表示（従来）
         tooltip.style.left = rect.right + 10 + "px";
         tooltip.style.top = rect.top + "px";
     }
+}
 
     function hideTooltip() {
         tooltip.style.display = "none";
