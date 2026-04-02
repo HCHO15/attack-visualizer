@@ -167,42 +167,55 @@ window.addEventListener("load", () => {
     }
 
     // 攻撃力 → X座標（非線形スケール：密集部を広げ、疎な部を圧縮）
-function atkToX(atk) {
-    const w = canvas.width - 100; // 左右50pxずつ余白
 
-    // 1. 攻撃力を昇順に並べる
+    // 攻撃力 → X座標（非線形スケール：密集部を広げ、疎な部を圧縮）
+function atkToX(atk) {
+    const leftMargin = canvas.width * 0.20;   // 左20%
+    const rightMargin = canvas.width * 0.20;  // 右20%
+    const usableWidth = canvas.width - leftMargin - rightMargin;
+
+    // 1. 可視キャラのみで昇順ソート
     const sorted = [...characters]
-        .filter(c => c.visible) // 非表示キャラはスケールに影響させない
+        .filter(c => c.visible)
         .sort((a, b) => a.atk - b.atk);
 
-    // 2. atk の順位（0〜1）を求める
+    // 2. rank（0〜1）
     const index = sorted.findIndex(c => c.atk === atk);
     const rank = index / (sorted.length - 1);
 
-    // 3. 隣接差分を計算（密集部を広げるための係数）
+    // 3. 局所差分補正
     let localWeight = 1;
     if (index > 0 && index < sorted.length - 1) {
         const prev = sorted[index - 1].atk;
         const next = sorted[index + 1].atk;
-        const diffPrev = atk - prev;
-        const diffNext = next - atk;
-
-        // 差が小さいほど weight を大きくする（広げる）
-        const localDiff = Math.min(diffPrev, diffNext);
-
-        // 200 は「密集をどれだけ広げるか」の強さ
+        const localDiff = Math.min(atk - prev, next - atk);
         localWeight = 1 + (200 / (localDiff + 1));
     }
 
-    // 4. 非線形変換（rank をベースに局所補正）
+    // 4. 非線形変換
     const nonlinear = Math.pow(rank, 0.7) * localWeight;
 
-    // 5. 正規化（0〜1に収める）
-    const maxNonlinear = Math.pow(1, 0.7) * (1 + 200 / 1);
-    const normalized = nonlinear / maxNonlinear;
+    // 5. 全キャラの nonlinear の min/max を求める
+    const allNonlinear = sorted.map((c, i) => {
+        const r = i / (sorted.length - 1);
+        let lw = 1;
+        if (i > 0 && i < sorted.length - 1) {
+            const p = sorted[i - 1].atk;
+            const n = sorted[i + 1].atk;
+            const d = Math.min(sorted[i].atk - p, n - sorted[i].atk);
+            lw = 1 + (200 / (d + 1));
+        }
+        return Math.pow(r, 0.7) * lw;
+    });
 
-    // 6. キャンバス座標に変換
-    return 50 + normalized * w;
+    const minNL = Math.min(...allNonlinear);
+    const maxNL = Math.max(...allNonlinear);
+
+    // 6. 0〜1 に正規化
+    const normalized = (nonlinear - minNL) / (maxNL - minNL);
+
+    // 7. 左右20%を余白にして配置
+    return leftMargin + normalized * usableWidth;
 }
 
     // -----------------------------
