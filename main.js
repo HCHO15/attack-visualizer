@@ -334,26 +334,38 @@ window.addEventListener("load", () => {
     // 指標キャラ
     // -----------------------------
     function drawIndicators() {
-        const h = canvas.height;
+    const h = canvas.height;
 
-        characters
-            .filter(c => c.type === "indicator" && c.visible)
-            .forEach(c => {
-                const x = atkToX(c.atk);
+    characters
+        .filter(c => c.type === "indicator" && c.visible)
+        .forEach(c => {
+            const x = atkToX(c.atk);
 
-                ctx.fillStyle = "rgba(100,150,255,0.25)";
-                ctx.fillRect(x - 50, 0, 50, h);
+            // 縦帯
+            ctx.fillStyle = "rgba(100,150,255,0.25)";
+            ctx.fillRect(x - 50, 0, 50, h);
 
-                ctx.strokeStyle = "#0033aa";
-                ctx.lineWidth = 3;
-                ctx.beginPath();
-                ctx.moveTo(x, 0);
-                ctx.lineTo(x, h);
-                ctx.stroke();
+            // 中央ライン
+            ctx.strokeStyle = "#0033aa";
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, h);
+            ctx.stroke();
 
-                placeIcon(c, x - 20, h - 60);
-            });
-    }
+            // アイコン配置
+            const iconX = x - 20;
+            const iconY = h - 60;
+            placeIcon(c, iconX, iconY);
+
+            // ★ 攻撃力をアイコンの下に描画
+            ctx.fillStyle = "#0033aa";
+            ctx.font = "14px sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillText(c.atk, x, iconY + 60); 
+            // x は中央揃え、iconY+60 はアイコンの下
+        });
+}
 
     // -----------------------------
     // 調整対象キャラ
