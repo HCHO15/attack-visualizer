@@ -166,16 +166,44 @@ window.addEventListener("load", () => {
         ctx.stroke();
     }
 
-    // -----------------------------
-    // 攻撃力 → X座標（線形のまま）
-    // ※ 非線形スケールは後で統合
-    // -----------------------------
-    function atkToX(atk) {
-        const minAtk = Math.min(...characters.map(c => c.atk));
-        const maxAtk = Math.max(...characters.map(c => c.atk));
-        const w = canvas.width - 100;
-        return 50 + ((atk - minAtk) / (maxAtk - minAtk)) * w;
+    // 攻撃力 → X座標（非線形スケール：密集部を広げ、疎な部を圧縮）
+function atkToX(atk) {
+    const w = canvas.width - 100; // 左右50pxずつ余白
+
+    // 1. 攻撃力を昇順に並べる
+    const sorted = [...characters]
+        .filter(c => c.visible) // 非表示キャラはスケールに影響させない
+        .sort((a, b) => a.atk - b.atk);
+
+    // 2. atk の順位（0〜1）を求める
+    const index = sorted.findIndex(c => c.atk === atk);
+    const rank = index / (sorted.length - 1);
+
+    // 3. 隣接差分を計算（密集部を広げるための係数）
+    let localWeight = 1;
+    if (index > 0 && index < sorted.length - 1) {
+        const prev = sorted[index - 1].atk;
+        const next = sorted[index + 1].atk;
+        const diffPrev = atk - prev;
+        const diffNext = next - atk;
+
+        // 差が小さいほど weight を大きくする（広げる）
+        const localDiff = Math.min(diffPrev, diffNext);
+
+        // 200 は「密集をどれだけ広げるか」の強さ
+        localWeight = 1 + (200 / (localDiff + 1));
     }
+
+    // 4. 非線形変換（rank をベースに局所補正）
+    const nonlinear = Math.pow(rank, 0.7) * localWeight;
+
+    // 5. 正規化（0〜1に収める）
+    const maxNonlinear = Math.pow(1, 0.7) * (1 + 200 / 1);
+    const normalized = nonlinear / maxNonlinear;
+
+    // 6. キャンバス座標に変換
+    return 50 + normalized * w;
+}
 
     // -----------------------------
     // 指標キャラの縦帯
