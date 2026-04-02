@@ -46,7 +46,7 @@ window.addEventListener("load", () => {
         // ツルギ（指標）
         {
             name: "ツルギ",
-            atk: 18177,
+            atk: 14306,
             type: "indicator",
             iconPath: "tsurugi.png",
             visible: true,
@@ -64,7 +64,7 @@ window.addEventListener("load", () => {
         },
         {
             name: "ツルギ",
-            atk: 18007,
+            atk: 14172,
             type: "indicator",
             iconPath: "tsurugi.png",
             visible: true,
