@@ -19,7 +19,7 @@ window.addEventListener("load", () => {
         },
         {
             name: "ジュンコ（調整対象）",
-            atk: 11975,
+            atk: 11135,
             type: "target",
             iconPath: "junko.png"
         }
