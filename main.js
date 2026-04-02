@@ -40,7 +40,7 @@ window.addEventListener("load", () => {
         },
         {
             name: "ツルギ",
-            atk: 18177,
+            atk: 14306,
             type: "indicator",
             iconPath: "tsurugi.png",
             visible: true,
@@ -56,13 +56,13 @@ window.addEventListener("load", () => {
         },
         {
             name: "ツルギ",
-            atk: 18007,
+            atk: 14172,
             type: "indicator",
             iconPath: "tsurugi.png",
             visible: true,
             detail: {
-                固有武器: "固有4レベル50",
-                絆: "30.20.1",
+                固有武器: "固有4レベル60",
+                絆: "30.10.1",
                 WB: "25",
                 NS: "10",
                 PS: "10",
