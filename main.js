@@ -359,39 +359,46 @@ window.addEventListener("load", () => {
     // 調整対象キャラ
     // -----------------------------
     function drawTargets() {
-        const h = canvas.height;
+    const h = canvas.height;
 
-        const targets = characters.filter(c => c.type === "target" && c.visible);
+    const targets = characters.filter(c => c.type === "target" && c.visible);
 
-        targets.forEach((c) => {
-            const x = atkToX(c.atk);
-            const y = h / 2;
+    targets.forEach((c) => {
+        // プロット点の位置
+        const px = atkToX(c.atk);
+        const py = h / 2;
 
-            ctx.fillStyle = "#e06666";
-            ctx.beginPath();
-            ctx.arc(x, y, 6, 0, Math.PI * 2);
-            ctx.fill();
+        // プロット点の描画
+        ctx.fillStyle = "#e06666";
+        ctx.beginPath();
+        ctx.arc(px, py, 6, 0, Math.PI * 2);
+        ctx.fill();
 
-            const iconX = c.iconX;
-            const iconY = c.iconY;
+        // アイコン位置（自動配置 or ドラッグ後の位置）
+        const iconX = c.iconX;
+        const iconY = c.iconY;
 
-            placeIcon(c, iconX, iconY);
+        // アイコンを描画（ドラッグ対応）
+        placeIcon(c, iconX, iconY);
 
-            const sx = iconX + 20;
-            const sy = iconY + 20;
+        // アイコン中心座標
+        const sx = iconX + 20;
+        const sy = iconY + 20;
 
-            const midX = sx + 40;
-            const midY = sy;
+        // ★ 中間点（鈍角を保証するために 30% プロット側へ寄せる）
+        const midX = sx + (px - sx) * 0.3;
+        const midY = sy;
 
-            ctx.strokeStyle = "#e06666";
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(sx, sy);
-            ctx.lineTo(midX, midY);
-            ctx.lineTo(x, y);
-            ctx.stroke();
-        });
-    }
+        // 折れ線の描画
+        ctx.strokeStyle = "#e06666";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(sx, sy);
+        ctx.lineTo(midX, midY);
+        ctx.lineTo(px, py);
+        ctx.stroke();
+    });
+}
 
     // -----------------------------
     // アイコン配置（ドラッグ対応）
