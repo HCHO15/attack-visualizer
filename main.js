@@ -9,19 +9,19 @@ window.addEventListener("load", () => {
             name: "シロコ＊テラー（指標1）",
             atk: 11284,
             type: "indicator",
-            iconClass: "icon-blue"
+            iconPath: "sirokoterror.png"
         },
         {
             name: "シロコ＊テラー（指標2）",
             atk: 11102,
             type: "indicator",
-            iconClass: "icon-green"
+            iconPath: "sirokoterror.png"
         },
         {
             name: "ジュンコ（調整対象）",
             atk: 11975,
             type: "target",
-            iconClass: "icon-red"
+            iconPath: "junko.png"
         }
     ];
 
@@ -73,10 +73,11 @@ window.addEventListener("load", () => {
         characters.filter(c => c.type === "indicator").forEach(c => {
             const x = atkToX(c.atk);
 
+            // 半透明帯
             ctx.fillStyle = "rgba(100,150,255,0.25)";
             ctx.fillRect(x - 25, 0, 50, h);
 
-            // 下端にアイコン
+            // アイコン（帯の下）
             placeIcon(c, x - 20, h - 60);
         });
     }
@@ -98,29 +99,36 @@ window.addEventListener("load", () => {
             // アイコン配置（左上固定）
             const iconX = 80;
             const iconY = 80;
-            placeIcon(c, iconX, iconY);
+            const iconDiv = placeIcon(c, iconX, iconY);
 
-            // 折れ線矢印（横→斜め）
-            const midX = iconX + 60;
-            const midY = iconY + 20;
+            // アイコン中心座標
+            const startX = iconX + 20;
+            const startY = iconY + 20;
 
+            // 折れ線の中間点
+            const midX = startX + 40;
+            const midY = startY;
+
+            // 折れ線矢印
             ctx.strokeStyle = "#e06666";
             ctx.lineWidth = 2;
             ctx.beginPath();
-            ctx.moveTo(iconX + 40, iconY + 20);
+            ctx.moveTo(startX, startY);
             ctx.lineTo(midX, midY);
             ctx.lineTo(x, y);
             ctx.stroke();
         });
     }
 
-    // アイコン配置
+    // アイコン配置（画像対応）
     function placeIcon(char, x, y) {
         const div = document.createElement("div");
-        div.className = `character-icon ${char.iconClass}`;
+        div.className = "character-icon";
         div.style.left = x + "px";
         div.style.top = y + "px";
+        div.style.backgroundImage = `url(${char.iconPath})`;
         div.title = char.name;
         iconLayer.appendChild(div);
+        return div;
     }
 });
