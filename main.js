@@ -309,37 +309,47 @@ window.addEventListener("load", () => {
     // 調整対象キャラ
     // -----------------------------
     function drawTargets() {
-        const h = canvas.height;
+    const h = canvas.height;
 
-        characters
-            .filter(c => c.type === "target" && c.visible)
-            .forEach(c => {
-                const x = atkToX(c.atk);
-                const y = h / 2 + (Math.random() * 20 - 10);
+    const targets = characters.filter(c => c.type === "target" && c.visible);
 
-                ctx.fillStyle = "#e06666";
-                ctx.beginPath();
-                ctx.arc(x, y, 6, 0, Math.PI * 2);
-                ctx.fill();
+    // ターゲットアイコンの縦配置
+    const startX = 80;
+    const startY = 80;
+    const gapY = 60; // アイコン間の縦間隔
 
-                const iconX = 80;
-                const iconY = 80;
-                placeIcon(c, iconX, iconY);
+    targets.forEach((c, i) => {
+        const x = atkToX(c.atk);
+        const y = h / 2 + (Math.random() * 20 - 10);
 
-                const startX = iconX + 20;
-                const startY = iconY + 20;
-                const midX = startX + 40;
-                const midY = startY;
+        // プロット点
+        ctx.fillStyle = "#e06666";
+        ctx.beginPath();
+        ctx.arc(x, y, 6, 0, Math.PI * 2);
+        ctx.fill();
 
-                ctx.strokeStyle = "#e06666";
-                ctx.lineWidth = 2;
-                ctx.beginPath();
-                ctx.moveTo(startX, startY);
-                ctx.lineTo(midX, midY);
-                ctx.lineTo(x, y);
-                ctx.stroke();
-            });
-    }
+        // アイコン位置（縦に並べる）
+        const iconX = startX;
+        const iconY = startY + i * gapY;
+        placeIcon(c, iconX, iconY);
+
+        // アイコン中心
+        const sx = iconX + 20;
+        const sy = iconY + 20;
+
+        // 折れ線
+        const midX = sx + 40;
+        const midY = sy;
+
+        ctx.strokeStyle = "#e06666";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(sx, sy);
+        ctx.lineTo(midX, midY);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+    });
+}
 
     // -----------------------------
     // アイコン配置（tooltip）
