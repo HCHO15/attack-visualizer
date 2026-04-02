@@ -5,25 +5,52 @@ window.addEventListener("load", () => {
 
     // キャラデータ（固定）
     const characters = [
-        {
-            name: "シロコ＊テラー（指標1）",
-            atk: 11284,
-            type: "indicator",
-            iconPath: "sirokoterror.png"
-        },
-        {
-            name: "シロコ＊テラー（指標2）",
-            atk: 11102,
-            type: "indicator",
-            iconPath: "sirokoterror.png"
-        },
-        {
-            name: "ジュンコ（調整対象）",
-            atk: 11135,
-            type: "target",
-            iconPath: "junko.png"
+    {
+        name: "シロコ＊テラー（指標1）",
+        atk: 11284,
+        type: "indicator",
+        iconPath: "sirokoterror.png",
+        detail: {
+            固有武器: "固有4レベル60",
+            絆: "50.1.1",
+            WB: "25",
+            NS: "10",
+            PS: "10",
+            装備: "10.10.10",
+            SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
         }
-    ];
+    },
+    {
+        name: "シロコ＊テラー（指標2）",
+        atk: 11102,
+        type: "indicator",
+        iconPath: "sirokoterror.png",
+        detail: {
+            固有武器: "固有3レベル50",
+            絆: "50.1.1",
+            WB: "25",
+            NS: "10",
+            PS: "10",
+            装備: "10.10.10",
+            SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+        }
+    },
+    {
+        name: "ジュンコ（調整対象）",
+        atk: 11135,
+        type: "target",
+        iconPath: "junko.png",
+        detail: {
+            固有武器: "固有4レベル20",
+            絆: "30.1.1",
+            WB: "0",
+            NS: "10",
+            PS: "10",
+            装備: "10.10.10",
+            SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+        }
+    }
+];
 
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
