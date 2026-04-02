@@ -202,6 +202,7 @@ window.addEventListener("load", () => {
         // ★ ノノミ（target）
         {
             name: "ノノミ(NS発動時)",
+            groupName: "ノノミ",
             atk: 13971,
             type: "target",
             iconPath: "nonomi.png",
