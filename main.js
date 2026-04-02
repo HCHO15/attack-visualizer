@@ -254,33 +254,46 @@ window.addEventListener("load", () => {
     // 非線形スケール（大小関係を絶対に維持）
     // -----------------------------
     function atkToX(atk) {
-        const leftMargin = canvas.width * 0.20;
-        const rightMargin = canvas.width * 0.20;
-        const usableWidth = canvas.width - leftMargin - rightMargin;
+    const leftMargin = canvas.width * 0.20;
+    const rightMargin = canvas.width * 0.20;
+    const usableWidth = canvas.width - leftMargin - rightMargin;
 
-        const sorted = [...characters]
-            .filter(c => c.visible)
-            .sort((a, b) => a.atk - b.atk);
+    // 1. 可視キャラを攻撃力順に並べる
+    const sorted = [...characters]
+        .filter(c => c.visible)
+        .sort((a, b) => a.atk - b.atk);
 
-        const gaps = [];
-        for (let i = 0; i < sorted.length - 1; i++) {
-            const diff = sorted[i + 1].atk - sorted[i].atk;
-            gaps.push(1 + (200 / (diff + 1)));
-        }
-
-        const cum = [0];
-        for (let i = 0; i < gaps.length; i++) {
-            cum.push(cum[i] + gaps[i]);
-        }
-
-        const minC = Math.min(...cum);
-        const maxC = Math.max(...cum);
-
-        const idx = sorted.findIndex(c => c.atk === atk);
-        const normalized = (cum[idx] - minC) / (maxC - minC);
-
-        return leftMargin + normalized * usableWidth;
+    // 2. 非線形用の gap 計算（密集部を広げる）
+    const gaps = [];
+    for (let i = 0; i < sorted.length - 1; i++) {
+        const diff = sorted[i + 1].atk - sorted[i].atk;
+        gaps.push(1 + (200 / (diff + 1))); // diff が小さいほど gap が大きい
     }
+
+    // 3. 累積和（非線形の基礎）
+    const cum = [0];
+    for (let i = 0; i < gaps.length; i++) {
+        cum.push(cum[i] + gaps[i]);
+    }
+
+    // 4. 非線形スケールを 0〜1 に正規化
+    const minC = Math.min(...cum);
+    const maxC = Math.max(...cum);
+    const idx = sorted.findIndex(c => c.atk === atk);
+    const nonlinear = (cum[idx] - minC) / (maxC - minC);
+
+    // 5. 線形スケール（直感）
+    const minAtk = sorted[0].atk;
+    const maxAtk = sorted[sorted.length - 1].atk;
+    const linear = (atk - minAtk) / (maxAtk - minAtk);
+
+    // 6. ハイブリッド（線形 × 非線形）
+    const w = 0.4; // 0.3〜0.5 が最も自然
+    const hybrid = linear * (1 - w) + nonlinear * w;
+
+    // 7. 左右20%の余白にマッピング
+    return leftMargin + hybrid * usableWidth;
+}
 
     // -----------------------------
     // ターゲットアイコン自動配置（円形）
