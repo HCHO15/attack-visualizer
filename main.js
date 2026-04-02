@@ -277,4 +277,44 @@ function atkToX(atk) {
 
     // スマホで画面タップしたら閉じる
     document.addEventListener("click", hideTooltip);
+
+    function groupCharactersByName() {
+    const groups = {};
+    characters.forEach((c) => {
+        if (!groups[c.name]) groups[c.name] = [];
+        groups[c.name].push(c);
+    });
+    return groups;
+
+    function buildCharacterList() {
+    const list = document.getElementById("character-list");
+    list.innerHTML = "";
+
+    const groups = groupCharactersByName();
+
+    Object.keys(groups).forEach((name, idx) => {
+        const id = "chk_group_" + idx;
+
+        // グループ内のキャラが1人でも visible ならチェックON
+        const checked = groups[name].some(c => c.visible);
+
+        const label = document.createElement("label");
+        label.innerHTML = `
+            <input type="checkbox" id="${id}" ${checked ? "checked" : ""}>
+            ${name}
+        `;
+        list.appendChild(label);
+
+        // チェック変更イベント
+        document.getElementById(id).addEventListener("change", (e) => {
+            const isChecked = e.target.checked;
+
+            // 同じ名前のキャラ全員の visible を変更
+            groups[name].forEach(c => c.visible = isChecked);
+
+            drawAll();
+        });
+    });
+}    
+}
 });
