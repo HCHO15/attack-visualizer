@@ -621,6 +621,7 @@ window.addEventListener("load", () => {
     // 現在のプリセット
     // -----------------------------
     let currentPreset = 1;
+    let frontCharacter = null;
     let characters = JSON.parse(JSON.stringify(presetCharacters[currentPreset]));
 
     // -----------------------------
@@ -794,137 +795,155 @@ window.addEventListener("load", () => {
     // 指標キャラ
     // -----------------------------
     function drawIndicators() {
-        const h = canvas.height;
+    const h = canvas.height;
 
-        characters
-            .filter(c => c.type === "indicator" && c.visible)
-            .forEach(c => {
+    const indicators = characters.filter(c => c.type === "indicator" && c.visible);
 
-                const leftX = atkToX(c.atk - 50);
-                const rightX = atkToX(c.atk);
+    // frontCharacter 以外を先に描画
+    indicators
+        .filter(c => c !== frontCharacter)
+        .forEach(c => drawIndicator(c));
 
-                ctx.fillStyle = "rgba(100,150,255,0.25)";
-                ctx.fillRect(leftX, 0, rightX - leftX, h);
-
-                ctx.strokeStyle = "#0033aa";
-                ctx.lineWidth = 3;
-                ctx.beginPath();
-                ctx.moveTo(rightX, 0);
-                ctx.lineTo(rightX, h);
-                ctx.stroke();
-
-                const iconX = rightX - 20;
-                const iconY = h - 90;
-                placeIcon(c, iconX, iconY);
-
-                const text = String(c.atk);
-                ctx.font = "14px sans-serif";
-                ctx.textAlign = "center";
-
-                const tx = iconX + 20;
-                const ty = iconY + 60;
-
-                const paddingX = 6;
-                const textWidth = ctx.measureText(text).width;
-                const boxWidth = textWidth + paddingX * 2;
-                const boxHeight = 20;
-
-                ctx.fillStyle = "white";
-                ctx.strokeStyle = "#0033aa";
-                ctx.lineWidth = 1;
-
-                const radius = 5;
-                ctx.beginPath();
-                ctx.moveTo(tx - boxWidth/2 + radius, ty - boxHeight/2);
-                ctx.lineTo(tx + boxWidth/2 - radius, ty - boxHeight/2);
-                ctx.quadraticCurveTo(tx + boxWidth/2, ty - boxHeight/2, tx + boxWidth/2, ty - boxHeight/2 + radius);
-                ctx.lineTo(tx + boxWidth/2, ty + boxHeight/2 - radius);
-                ctx.quadraticCurveTo(tx + boxWidth/2, ty + boxHeight/2, tx + boxWidth/2 - radius, ty + boxHeight/2);
-                ctx.lineTo(tx - boxWidth/2 + radius, ty + boxHeight/2);
-                ctx.quadraticCurveTo(tx - boxWidth/2, ty + boxHeight/2, tx - boxWidth/2, ty + boxHeight/2 - radius);
-                ctx.lineTo(tx - boxWidth/2, ty - boxHeight/2 + radius);
-                ctx.quadraticCurveTo(tx - boxWidth/2, ty - boxHeight/2, tx - boxWidth/2 + radius, ty - boxHeight/2);
-                ctx.closePath();
-                ctx.fill();
-                ctx.stroke();
-
-                ctx.fillStyle = "#0033aa";
-                ctx.fillText(text, tx, ty + 5);
-            });
+    // frontCharacter が indicator の場合は最後に描画
+    if (frontCharacter && frontCharacter.type === "indicator" && frontCharacter.visible) {
+        drawIndicator(frontCharacter);
     }
+
+    function drawIndicator(c) {
+        const leftX = atkToX(c.atk - 50);
+        const rightX = atkToX(c.atk);
+
+        ctx.fillStyle = "rgba(100,150,255,0.25)";
+        ctx.fillRect(leftX, 0, rightX - leftX, h);
+
+        ctx.strokeStyle = "#0033aa";
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(rightX, 0);
+        ctx.lineTo(rightX, h);
+        ctx.stroke();
+
+        const iconX = rightX - 20;
+        const iconY = h - 90;
+        placeIcon(c, iconX, iconY);
+
+        const text = String(c.atk);
+        ctx.font = "14px sans-serif";
+        ctx.textAlign = "center";
+
+        const tx = iconX + 20;
+        const ty = iconY + 60;
+
+        const paddingX = 6;
+        const textWidth = ctx.measureText(text).width;
+        const boxWidth = textWidth + paddingX * 2;
+        const boxHeight = 20;
+
+        ctx.fillStyle = "white";
+        ctx.strokeStyle = "#0033aa";
+        ctx.lineWidth = 1;
+
+        const radius = 5;
+        ctx.beginPath();
+        ctx.moveTo(tx - boxWidth/2 + radius, ty - boxHeight/2);
+        ctx.lineTo(tx + boxWidth/2 - radius, ty - boxHeight/2);
+        ctx.quadraticCurveTo(tx + boxWidth/2, ty - boxHeight/2, tx + boxWidth/2, ty - boxHeight/2 + radius);
+        ctx.lineTo(tx + boxWidth/2, ty + boxHeight/2 - radius);
+        ctx.quadraticCurveTo(tx + boxWidth/2, ty + boxHeight/2, tx + boxWidth/2 - radius, ty + boxHeight/2);
+        ctx.lineTo(tx - boxWidth/2 + radius, ty + boxHeight/2);
+        ctx.quadraticCurveTo(tx - boxWidth/2, ty + boxHeight/2, tx - boxWidth/2, ty + boxHeight/2 - radius);
+        ctx.lineTo(tx - boxWidth/2, ty - boxHeight/2 + radius);
+        ctx.quadraticCurveTo(tx - boxWidth/2, ty - boxHeight/2, tx - boxWidth/2 + radius, ty - boxHeight/2);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = "#0033aa";
+        ctx.fillText(text, tx, ty + 5);
+    }
+}
 
     // -----------------------------
     // 調整対象キャラ
     // -----------------------------
     function drawTargets() {
-        const h = canvas.height;
+    const h = canvas.height;
 
-        const targets = characters.filter(c => c.type === "target" && c.visible);
+    const targets = characters.filter(c => c.type === "target" && c.visible);
 
-        targets.forEach((c) => {
+    // frontCharacter 以外を先に描画
+    targets
+        .filter(c => c !== frontCharacter)
+        .forEach(c => drawTarget(c));
 
-            const px = atkToX(c.atk);
-            const py = h / 2;
-
-            ctx.fillStyle = "#e06666";
-            ctx.beginPath();
-            ctx.arc(px, py, 6, 0, Math.PI * 2);
-            ctx.fill();
-
-            const iconX = c.iconX;
-            const iconY = c.iconY;
-
-            placeIcon(c, iconX, iconY);
-
-            const sx = iconX + 20;
-            const sy = iconY + 20;
-
-            const midX = sx + (px - sx) * 0.3;
-            const midY = sy;
-
-            ctx.strokeStyle = "#e06666";
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(sx, sy);
-            ctx.lineTo(midX, midY);
-            ctx.lineTo(px, py);
-            ctx.stroke();
-
-            const text = String(c.atk);
-            ctx.font = "14px sans-serif";
-            ctx.textAlign = "center";
-
-            const tx = iconX + 20;
-            const ty = iconY + 60;
-
-            const paddingX = 6;
-            const textWidth = ctx.measureText(text).width;
-            const boxWidth = textWidth + paddingX * 2;
-            const boxHeight = 20;
-
-            ctx.fillStyle = "white";
-            ctx.strokeStyle = "#e06666";
-            ctx.lineWidth = 1;
-
-            const radius = 5;
-            ctx.beginPath();
-            ctx.moveTo(tx - boxWidth/2 + radius, ty - boxHeight/2);
-            ctx.lineTo(tx + boxWidth/2 - radius, ty - boxHeight/2);
-            ctx.quadraticCurveTo(tx + boxWidth/2, ty - boxHeight/2, tx + boxWidth/2, ty - boxHeight/2 + radius);
-            ctx.lineTo(tx + boxWidth/2, ty + boxHeight/2 - radius);
-            ctx.quadraticCurveTo(tx + boxWidth/2, ty + boxHeight/2, tx + boxWidth/2 - radius, ty + boxHeight/2);
-            ctx.lineTo(tx - boxWidth/2 + radius, ty + boxHeight/2);
-            ctx.quadraticCurveTo(tx - boxWidth/2, ty + boxHeight/2, tx - boxWidth/2, ty + boxHeight/2 - radius);
-            ctx.lineTo(tx - boxWidth/2, ty - boxHeight/2 + radius);
-            ctx.quadraticCurveTo(tx - boxWidth/2, ty - boxHeight/2, tx - boxWidth/2 + radius, ty - boxHeight/2);
-            ctx.closePath();
-            ctx.fill();
-            ctx.stroke();
-
-            ctx.fillStyle = "#e06666";
-            ctx.fillText(text, tx, ty + 5);
-        });
+    // frontCharacter が target の場合は最後に描画
+    if (frontCharacter && frontCharacter.type === "target" && frontCharacter.visible) {
+        drawTarget(frontCharacter);
     }
+
+    function drawTarget(c) {
+        const px = atkToX(c.atk);
+        const py = h / 2;
+
+        ctx.fillStyle = "#e06666";
+        ctx.beginPath();
+        ctx.arc(px, py, 6, 0, Math.PI * 2);
+        ctx.fill();
+
+        const iconX = c.iconX;
+        const iconY = c.iconY;
+
+        placeIcon(c, iconX, iconY);
+
+        const sx = iconX + 20;
+        const sy = iconY + 20;
+
+        const midX = sx + (px - sx) * 0.3;
+        const midY = sy;
+
+        ctx.strokeStyle = "#e06666";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(sx, sy);
+        ctx.lineTo(midX, midY);
+        ctx.lineTo(px, py);
+        ctx.stroke();
+
+        const text = String(c.atk);
+        ctx.font = "14px sans-serif";
+        ctx.textAlign = "center";
+
+        const tx = iconX + 20;
+        const ty = iconY + 60;
+
+        const paddingX = 6;
+        const textWidth = ctx.measureText(text).width;
+        const boxWidth = textWidth + paddingX * 2;
+        const boxHeight = 20;
+
+        ctx.fillStyle = "white";
+        ctx.strokeStyle = "#e06666";
+        ctx.lineWidth = 1;
+
+        const radius = 5;
+        ctx.beginPath();
+        ctx.moveTo(tx - boxWidth/2 + radius, ty - boxHeight/2);
+        ctx.lineTo(tx + boxWidth/2 - radius, ty - boxHeight/2);
+        ctx.quadraticCurveTo(tx + boxWidth/2, ty - boxHeight/2, tx + boxWidth/2, ty - boxHeight/2 + radius);
+        ctx.lineTo(tx + boxWidth/2, ty + boxHeight/2 - radius);
+        ctx.quadraticCurveTo(tx + boxWidth/2, ty + boxHeight/2, tx + boxWidth/2 - radius, ty + boxHeight/2);
+        ctx.lineTo(tx - boxWidth/2 + radius, ty + boxHeight/2);
+        ctx.quadraticCurveTo(tx - boxWidth/2, ty + boxHeight/2, tx - boxWidth/2, ty + boxHeight/2 - radius);
+        ctx.lineTo(tx - boxWidth/2, ty - boxHeight/2 + radius);
+        ctx.quadraticCurveTo(tx - boxWidth/2, ty - boxHeight/2, tx - boxWidth/2 + radius, ty - boxHeight/2);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = "#e06666";
+        ctx.fillText(text, tx, ty + 5);
+    }
+}
 
     // -----------------------------
     // アイコン配置（ドラッグ対応）
@@ -977,6 +996,25 @@ window.addEventListener("load", () => {
             div.style.left = nx + "px";
             div.style.top = ny + "px";
         });
+
+        div.addEventListener("mousedown", (e) => {
+    dragging = true;
+    offsetX = e.offsetX;
+    offsetY = e.offsetY;
+
+    // ★ クリックされたキャラを最前面に設定
+    frontCharacter = char;
+
+    // ★ 全アイコンの z-index をリセット
+    document.querySelectorAll(".character-icon").forEach(el => {
+        el.style.zIndex = 1;
+    });
+
+    // ★ このアイコンだけ最前面へ
+    div.style.zIndex = 9999;
+
+    drawAll();
+});
 
         window.addEventListener("mouseup", () => dragging = false);
 
