@@ -662,9 +662,17 @@ window.addEventListener("load", () => {
             checkbox.checked = groups[group].some(c => c.visible);
 
             checkbox.addEventListener("change", () => {
-                groups[group].forEach(c => c.visible = checkbox.checked);
-                drawAll();
-            });
+                groups[group].forEach(c => {
+                    c.visible = checkbox.checked;
+
+        // ★ アイコンの表示/非表示を反映
+        if (c._iconDiv) {
+            c._iconDiv.style.display = c.visible ? "block" : "none";
+        }
+    });
+
+    drawAll();
+});
 
             label.appendChild(checkbox);
             label.appendChild(document.createTextNode(group));
