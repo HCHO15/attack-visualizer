@@ -12,7 +12,9 @@ window.addEventListener("load", () => {
     // プリセットキャラデータ
     // -----------------------------
     const presetCharacters = {
-        1: [ /* ← ここは省略（あなたの元データそのまま） */ ],
+        1: [
+            // ← ここにあなたの元のキャラデータをそのまま入れてください
+        ],
         2: [],
         3: []
     };
@@ -30,6 +32,7 @@ window.addEventListener("load", () => {
         currentPreset = Number(e.target.value);
         characters = JSON.parse(JSON.stringify(presetCharacters[currentPreset]));
         rebuildCharacterList();
+        initializeIcons(); // ← 再利用方式なので初期化が必要
         drawAll();
     });
 
@@ -170,8 +173,6 @@ window.addEventListener("load", () => {
     function drawAll() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        iconLayer.innerHTML = ""; 
-
         autoPlaceTargetIcons();
 
         drawNumberLine();
@@ -216,41 +217,9 @@ window.addEventListener("load", () => {
 
                 const iconX = rightX - 20;
                 const iconY = h - 90;
-                placeIcon(c, iconX, iconY);
+                updateIconPosition(c, iconX, iconY);
 
-                const text = String(c.atk);
-                ctx.font = "14px sans-serif";
-                ctx.textAlign = "center";
-
-                const tx = iconX + 20;
-                const ty = iconY + 60;
-
-                const paddingX = 6;
-                const textWidth = ctx.measureText(text).width;
-                const boxWidth = textWidth + paddingX * 2;
-                const boxHeight = 20;
-
-                ctx.fillStyle = "white";
-                ctx.strokeStyle = "#0033aa";
-                ctx.lineWidth = 1;
-
-                const radius = 5;
-                ctx.beginPath();
-                ctx.moveTo(tx - boxWidth/2 + radius, ty - boxHeight/2);
-                ctx.lineTo(tx + boxWidth/2 - radius, ty - boxHeight/2);
-                ctx.quadraticCurveTo(tx + boxWidth/2, ty - boxHeight/2, tx + boxWidth/2, ty - boxHeight/2 + radius);
-                ctx.lineTo(tx + boxWidth/2, ty + boxHeight/2 - radius);
-                ctx.quadraticCurveTo(tx + boxWidth/2, ty + boxHeight/2, tx + boxWidth/2 - radius, ty + boxHeight/2);
-                ctx.lineTo(tx - boxWidth/2 + radius, ty + boxHeight/2);
-                ctx.quadraticCurveTo(tx - boxWidth/2, ty + boxHeight/2, tx - boxWidth/2, ty + boxHeight/2 - radius);
-                ctx.lineTo(tx - boxWidth/2, ty - boxHeight/2 + radius);
-                ctx.quadraticCurveTo(tx - boxWidth/2, ty - boxHeight/2, tx - boxWidth/2 + radius, ty - boxHeight/2);
-                ctx.closePath();
-                ctx.fill();
-                ctx.stroke();
-
-                ctx.fillStyle = "#0033aa";
-                ctx.fillText(text, tx, ty + 5);
+                drawAtkLabel(c.atk, iconX + 20, iconY + 60, "#0033aa");
             });
     }
 
@@ -275,7 +244,7 @@ window.addEventListener("load", () => {
             const iconX = c.iconX;
             const iconY = c.iconY;
 
-            placeIcon(c, iconX, iconY);
+            updateIconPosition(c, iconX, iconY);
 
             const sx = iconX + 20;
             const sy = iconY + 20;
@@ -291,69 +260,71 @@ window.addEventListener("load", () => {
             ctx.lineTo(px, py);
             ctx.stroke();
 
-            const text = String(c.atk);
-            ctx.font = "14px sans-serif";
-            ctx.textAlign = "center";
-
-            const tx = iconX + 20;
-            const ty = iconY + 60;
-
-            const paddingX = 6;
-            const textWidth = ctx.measureText(text).width;
-            const boxWidth = textWidth + paddingX * 2;
-            const boxHeight = 20;
-
-            ctx.fillStyle = "white";
-            ctx.strokeStyle = "#e06666";
-            ctx.lineWidth = 1;
-
-            const radius = 5;
-            ctx.beginPath();
-            ctx.moveTo(tx - boxWidth/2 + radius, ty - boxHeight/2);
-            ctx.lineTo(tx + boxWidth/2 - radius, ty - boxHeight/2);
-            ctx.quadraticCurveTo(tx + boxWidth/2, ty - boxHeight/2, tx + boxWidth/2, ty - boxHeight/2 + radius);
-            ctx.lineTo(tx + boxWidth/2, ty + boxHeight/2 - radius);
-            ctx.quadraticCurveTo(tx + boxWidth/2, ty + boxHeight/2, tx + boxWidth/2 - radius, ty + boxHeight/2);
-            ctx.lineTo(tx - boxWidth/2 + radius, ty + boxHeight/2);
-            ctx.quadraticCurveTo(tx - boxWidth/2, ty + boxHeight/2, tx - boxWidth/2, ty + boxHeight/2 - radius);
-            ctx.lineTo(tx - boxWidth/2, ty - boxHeight/2 + radius);
-            ctx.quadraticCurveTo(tx - boxWidth/2, ty - boxHeight/2, tx - boxWidth/2 + radius, ty - boxHeight/2);
-            ctx.closePath();
-            ctx.fill();
-            ctx.stroke();
-
-            ctx.fillStyle = "#e06666";
-            ctx.fillText(text, tx, ty + 5);
+            drawAtkLabel(c.atk, iconX + 20, iconY + 60, "#e06666");
         });
     }
 
     // -----------------------------
-    // アイコン配置（ドラッグ対応・再利用方式）
+    // ATK ラベル描画
     // -----------------------------
-    function placeIcon(char, x, y) {
+    function drawAtkLabel(text, tx, ty, color) {
+        ctx.font = "14px sans-serif";
+        ctx.textAlign = "center";
 
-        // 既存アイコンがあれば再利用
-        let div = char._iconDiv;
-        if (!div) {
-            div = document.createElement("div");
+        const paddingX = 6;
+        const textWidth = ctx.measureText(text).width;
+        const boxWidth = textWidth + paddingX * 2;
+        const boxHeight = 20;
+
+        ctx.fillStyle = "white";
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 1;
+
+        const radius = 5;
+        ctx.beginPath();
+        ctx.moveTo(tx - boxWidth/2 + radius, ty - boxHeight/2);
+        ctx.lineTo(tx + boxWidth/2 - radius, ty - boxHeight/2);
+        ctx.quadraticCurveTo(tx + boxWidth/2, ty - boxHeight/2, tx + boxWidth/2, ty - boxHeight/2 + radius);
+        ctx.lineTo(tx + boxWidth/2, ty + boxHeight/2 - radius);
+        ctx.quadraticCurveTo(tx + boxWidth/2, ty + boxHeight/2, tx + boxWidth/2 - radius, ty + boxHeight/2);
+        ctx.lineTo(tx - boxWidth/2 + radius, ty + boxHeight/2);
+        ctx.quadraticCurveTo(tx - boxWidth/2, ty + boxHeight/2, tx - boxWidth/2, ty + boxHeight/2 - radius);
+        ctx.lineTo(tx - boxWidth/2, ty - boxHeight/2 + radius);
+        ctx.quadraticCurveTo(tx - boxWidth/2, ty - boxHeight/2, tx - boxWidth/2 + radius, ty - boxHeight/2);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = color;
+        ctx.fillText(text, tx, ty + 5);
+    }
+
+    // -----------------------------
+    // アイコン初期生成（再利用方式）
+    // -----------------------------
+    function initializeIcons() {
+        iconLayer.innerHTML = ""; // ← 初期化時のみクリア
+
+        characters.forEach(c => {
+            const div = document.createElement("div");
             div.className = "character-icon";
-            div.style.backgroundImage = `url(${char.iconPath})`;
+            div.style.backgroundImage = `url(${c.iconPath})`;
 
             // バッジ
-            if (char.badgeText) {
+            if (c.badgeText) {
                 const badge = document.createElement("div");
                 badge.className = "icon-badge";
-                badge.textContent = char.badgeText;
+                badge.textContent = c.badgeText;
                 div.appendChild(badge);
             }
 
             // ハイライト
-            if (char.highlight) {
+            if (c.highlight) {
                 div.classList.add("icon-highlight");
             }
 
             // Tooltip
-            div.addEventListener("mouseenter", (e) => showTooltip(e, char));
+            div.addEventListener("mouseenter", (e) => showTooltip(e, c));
             div.addEventListener("mouseleave", hideTooltip);
 
             // ドラッグ
@@ -374,24 +345,35 @@ window.addEventListener("load", () => {
                 const nx = e.clientX - rect.left - offsetX;
                 const ny = e.clientY - rect.top - offsetY;
 
-                char.iconX = nx;
-                char.iconY = ny;
+                c.iconX = nx;
+                c.iconY = ny;
 
                 div.style.left = nx + "px";
                 div.style.top = ny + "px";
 
-                drawAll(); // ★ 線を追従
+                drawAll(); // 線を追従
             });
 
             window.addEventListener("mouseup", () => dragging = false);
 
             iconLayer.appendChild(div);
-            char._iconDiv = div;
-        }
+            c._iconDiv = div;
+        });
+    }
 
-        // 再利用時の位置更新
+    // -----------------------------
+    // アイコン位置更新（再利用方式）
+    // -----------------------------
+    function updateIconPosition(char, x, y) {
+        const div = char._iconDiv;
+        if (!div) return;
+
         div.style.left = x + "px";
         div.style.top = y + "px";
     }
+
+    // 初回アイコン生成
+    initializeIcons();
+    drawAll();
 
 });
