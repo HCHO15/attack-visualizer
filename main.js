@@ -7,6 +7,7 @@ window.addEventListener("load", () => {
     // キャラデータ
     const presetCharacters = {
     1: [
+        {
             name: "シロコ＊テラー",
             atk: 11284,
             type: "indicator",
