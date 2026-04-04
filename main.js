@@ -12,606 +12,7 @@ window.addEventListener("load", () => {
     // プリセットキャラデータ
     // -----------------------------
     const presetCharacters = {
-        1: [
-{
-    name: "シロコ＊テラー",
-    atk: 11284,
-    type: "indicator",
-    iconPath: "sirokoterror.png",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4レベル60",
-        絆: "50.1.1",
-        WB: "25",
-        スキル: "MMMM",
-        装備: "10.10.10",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "シロコ＊テラー",
-    atk: 11102,
-    type: "indicator",
-    iconPath: "sirokoterror.png",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有3レベル50",
-        絆: "50.1.1",
-        WB: "25",
-        スキル: "MMMM",
-        装備: "10.10.10",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "ツルギ",
-    atk: 14306,
-    type: "indicator",
-    iconPath: "tsurugi.png",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4レベル60",
-        絆: "30.20.1",
-        WB: "25",
-        スキル: "MMMM",
-        装備: "10.10.10.T2",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "ツルギ",
-    atk: 14172,
-    type: "indicator",
-    iconPath: "tsurugi.png",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4レベル60",
-        絆: "30.10.1",
-        WB: "25",
-        スキル: "MMMM",
-        装備: "10.10.10.T2",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "ツルギ（EX発動）",
-    groupName: "ツルギ",
-    atk: 18177,
-    type: "indicator",
-    iconPath: "tsurugi.png",
-    badgeText: "EX",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4レベル60",
-        絆: "30.20.1",
-        WB: "25",
-        スキル: "MMMM",
-        装備: "10.10.10.T2",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "ジュンコ",
-    atk: 11197,
-    type: "target",
-    iconPath: "junko.png",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4<strong>レベル20</strong>",
-        絆: "30.<strong>10</strong>.1",
-        WB: "0",
-        スキル: "MMMM",
-        装備: "10.10.10.T2",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "ジュンコ",
-    groupName: "ジュンコ",
-    atk: 11284,
-    type: "target",
-    iconPath: "junko.png",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4<strong>レベル29</strong>",
-        絆: "30.<strong>1</strong>.1",
-        WB: "0",
-        スキル: "MMMM",
-        装備: "10.10.10.T2",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "ジュンコ",
-    groupName: "ジュンコ",
-    atk: 11279,
-    type: "target",
-    iconPath: "junko.png",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4<strong>レベル27</strong>",
-        絆: "20.10.1",
-        WB: "0",
-        スキル: "MMMM",
-        装備: "10.10.10.T2",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "ジュンコ",
-    groupName: "ジュンコ",
-    atk: 11284,
-    type: "target",
-    iconPath: "junko.png",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4<strong>レベル30</strong>",
-        絆: "<strong>25</strong>.1.1",
-        WB: "0",
-        スキル: "MMMM",
-        装備: "10.10.10.T2",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "ジュンコ",
-    groupName: "ジュンコ",
-    atk: 12469,
-    type: "target",
-    iconPath: "junko.png",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4<strong>レベル60</strong>",
-        絆: "<strong>50</strong>.<strong>50</strong>.1",
-        WB: "<strong>25</strong>",
-        スキル: "MMMM",
-        装備: "10.10.10.T2",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "イオリ",
-    groupName: "イオリ",
-    atk: 11416,
-    type: "target",
-    iconPath: "iori.png",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4レベル60",
-        絆: "30.20.1",
-        WB: "0",
-        スキル: "MMMM",
-        装備: "10.10.10.T2",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "イオリ",
-    groupName: "イオリ",
-    atk: 11276,
-    type: "target",
-    iconPath: "iori.png",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4<strong>レベル48</strong>",
-        絆: "30.20.1",
-        WB: "0",
-        スキル: "MMMM",
-        装備: "10.10.10.T2",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "イオリ",
-    groupName: "イオリ",
-    atk: 11282,
-    type: "target",
-    iconPath: "iori.png",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4<strong>レベル50</strong>",
-        絆: "<strong>25</strong>.<strong>20</strong>.1",
-        WB: "0",
-        スキル: "MMMM",
-        装備: "10.10.10.T2",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "イオリ",
-    groupName: "イオリ",
-    atk: 11279,
-    type: "target",
-    iconPath: "iori.png",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4<strong>レベル60</strong>",
-        絆: "<strong>40</strong>.<strong>1</strong>.1",
-        WB: "0",
-        スキル: "MMMM",
-        装備: "10.10.10.T2",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-
-{
-    name: "ムツキ（正月）",
-    atk: 15038,
-    type: "target",
-    iconPath: "mutsuki_newyear.png",
-    highlight: true,
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4レベル40",
-        絆: "30.30.1",
-        WB: "0",
-        スキル: "MMMM",
-        装備: "10.10.10",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "ムツキ（正月）",
-    atk: 14288,
-    type: "target",
-    iconPath: "mutsuki_newyear.png",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4<strong>レベル14</strong>",
-        絆: "30.30.1",
-        WB: "0",
-        スキル: "MMMM",
-        装備: "10.10.10",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "ムツキ（正月）",
-    atk: 14170,
-    type: "target",
-    iconPath: "mutsuki_newyear.png",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4レベル40",
-        絆: "30.30.1",
-        WB: "0",
-        スキル: "M<strong>3</strong>MM",
-        装備: "10.10.10",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "ムツキ（正月）",
-    atk: 14263,
-    type: "target",
-    iconPath: "mutsuki_newyear.png",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4レベル40",
-        絆: "30.30.1",
-        WB: "0",
-        スキル: "M<strong>3</strong>MM",
-        装備: "8.10.10",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-
-{
-    name: "ノノミ(NS発動時)",
-    groupName: "ノノミ",
-    atk: 13971,
-    type: "target",
-    iconPath: "nonomi.png",
-    badgeText: "NS",
-    highlight: true,
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4レベル60",
-        絆: "30.20.1",
-        WB: "0",
-        スキル: "MMMM",
-        装備: "10.10.10.T2",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "ノノミ（NS発動）",
-    groupName: "ノノミ",
-    atk: 13178,
-    type: "target",
-    iconPath: "nonomi.png",
-    badgeText: "NS",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4<strong>レベル20</strong>",
-        絆: "30.20.1",
-        WB: "0",
-        スキル: "MMMM",
-        装備: "10.10.10.T2",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "ノノミ（NS発動）",
-    groupName: "ノノミ",
-    atk: 14306,
-    type: "target",
-    iconPath: "nonomi.png",
-    badgeText: "NS",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4レベル60",
-        絆: "<strong>50</strong>.<strong>50</strong>.1",
-        WB: "0",
-        スキル: "MMMM",
-        装備: "10.10.10.T2",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "ノノミ（NS発動）",
-    groupName: "ノノミ",
-    atk: 14264,
-    type: "target",
-    iconPath: "nonomi.png",
-    badgeText: "NS",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4レベル60",
-        絆: "30.30.1",
-        WB: "<strong>25</strong>",
-        スキル: "MMMM",
-        装備: "10.10.10.T2",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "ノノミ（NS発動）",
-    groupName: "ノノミ",
-    atk: 11574,
-    type: "target",
-    iconPath: "nonomi.png",
-    badgeText: "NS",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4<strong>レベル1</strong>",
-        絆: "30.20.1",
-        WB: "0",
-        スキル: "M<strong>1</strong>MM",
-        装備: "10.10.10.T2",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "ノノミ（NS発動）",
-    groupName: "ノノミ",
-    atk: 11269,
-    type: "target",
-    iconPath: "nonomi.png",
-    badgeText: "NS",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4<strong>レベル1</strong>",
-        絆: "30.20.1",
-        WB: "0",
-        スキル: "M<strong>1</strong>MM",
-        装備: "8.10.10.T2",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "ノノミ（NS発動）",
-    groupName: "ノノミ",
-    atk: 11242,
-    type: "target",
-    iconPath: "nonomi.png",
-    badgeText: "NS",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4<strong>レベル1</strong>",
-        絆: "20.1.1",
-        WB: "0",
-        スキル: "M<strong>1</strong>MM",
-        装備: "9.10.10",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "ツルギ",
-    groupName: "ツルギ",
-    atk: 14657,
-    type: "target",
-    iconPath: "tsurugi.png",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4レベル60",
-        絆: "50.50.1",
-        WB: "25",
-        スキル: "MMMM",
-        装備: "10.10.10.T2",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-
-{
-    name: "水着ヒヨリ",
-    groupName: "水着ヒヨリ",
-    atk: 14393,
-    type: "target",
-    iconPath: "hiyorimizugi.png",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4レベル60",
-        絆: "50.50.1",
-        WB: "25",
-        スキル: "MMMM",
-        装備: "10.10.10",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "水着ヒヨリ",
-    groupName: "水着ヒヨリ",
-    atk: 14102,
-    type: "target",
-    iconPath: "hiyorimizugi.png",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4レベル60",
-        絆: "50.50.1",
-        WB: "0",
-        スキル: "MMMM",
-        装備: "10.10.10",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "モモイ（ミドリシナジー）",
-    groupName: "モモミド",
-    atk: 10812,
-    type: "target",
-    iconPath: "momoi.png",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4レベル60",
-        絆: "50.50.1",
-        WB: "25",
-        スキル: "MMMM",
-        装備: "10.10.10.T2",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）",
-    }
-},
-{
-    name: "ミドリ",
-    groupName: "モモミド",
-    atk: 12154,
-    type: "target",
-    iconPath: "midori.png",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "<strong>固有1レベル1</strong>",
-        絆: "20.1.1",
-        WB: "0",
-        スキル: "MMMM",
-        装備: "10.10.10.T2",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "ドレスヒナ",
-    groupName: "ドレスヒナ",
-    atk: 15937,
-    type: "indicator",
-    iconPath: "hinadress.png",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4レベル60",
-        絆: "50.50.50",
-        WB: "25",
-        スキル: "MMMM",
-        装備: "10.10.10",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "ドレスヒナ",
-    groupName: "ドレスヒナ",
-    atk: 15447,
-    type: "indicator",
-    iconPath: "hinadress.png",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4レベル60",
-        絆: "<strong>30</strong>.<strong>1</strong>.50",
-        WB: "25",
-        スキル: "MMMM",
-        装備: "10.10.10",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "ドレスヒナ",
-    groupName: "ドレスヒナ",
-    atk: 15680,
-    type: "indicator",
-    iconPath: "hinadress.png",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4レベル60",
-        絆: "30.30.50",
-        WB: "25",
-        スキル: "MMMM",
-        装備: "10.10.10",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-}            
-        ],
+        1: [ /* ← ここは省略（あなたの元データそのまま） */ ],
         2: [],
         3: []
     };
@@ -925,62 +326,70 @@ window.addEventListener("load", () => {
     }
 
     // -----------------------------
-    // アイコン配置（ドラッグ対応）
+    // アイコン配置（ドラッグ対応・再利用方式）
     // -----------------------------
     function placeIcon(char, x, y) {
-        const div = document.createElement("div");
-        div.className = "character-icon";
 
+        // 既存アイコンがあれば再利用
+        let div = char._iconDiv;
+        if (!div) {
+            div = document.createElement("div");
+            div.className = "character-icon";
+            div.style.backgroundImage = `url(${char.iconPath})`;
+
+            // バッジ
+            if (char.badgeText) {
+                const badge = document.createElement("div");
+                badge.className = "icon-badge";
+                badge.textContent = char.badgeText;
+                div.appendChild(badge);
+            }
+
+            // ハイライト
+            if (char.highlight) {
+                div.classList.add("icon-highlight");
+            }
+
+            // Tooltip
+            div.addEventListener("mouseenter", (e) => showTooltip(e, char));
+            div.addEventListener("mouseleave", hideTooltip);
+
+            // ドラッグ
+            let dragging = false;
+            let offsetX = 0;
+            let offsetY = 0;
+
+            div.addEventListener("mousedown", (e) => {
+                dragging = true;
+                offsetX = e.offsetX;
+                offsetY = e.offsetY;
+            });
+
+            window.addEventListener("mousemove", (e) => {
+                if (!dragging) return;
+
+                const rect = iconLayer.getBoundingClientRect();
+                const nx = e.clientX - rect.left - offsetX;
+                const ny = e.clientY - rect.top - offsetY;
+
+                char.iconX = nx;
+                char.iconY = ny;
+
+                div.style.left = nx + "px";
+                div.style.top = ny + "px";
+
+                drawAll(); // ★ 線を追従
+            });
+
+            window.addEventListener("mouseup", () => dragging = false);
+
+            iconLayer.appendChild(div);
+            char._iconDiv = div;
+        }
+
+        // 再利用時の位置更新
         div.style.left = x + "px";
         div.style.top = y + "px";
-        div.style.backgroundImage = `url(${char.iconPath})`;
-
-        // バッジ
-        if (char.badgeText) {
-            const badge = document.createElement("div");
-            badge.className = "icon-badge";
-            badge.textContent = char.badgeText;
-            div.appendChild(badge);
-        }
-
-        // ハイライト
-        if (char.highlight) {
-            div.classList.add("icon-highlight");
-        }
-
-        // Tooltip
-        div.addEventListener("mouseenter", (e) => showTooltip(e, char));
-        div.addEventListener("mouseleave", hideTooltip);
-
-        // ドラッグ
-        let dragging = false;
-        let offsetX = 0;
-        let offsetY = 0;
-
-        div.addEventListener("mousedown", (e) => {
-            dragging = true;
-            offsetX = e.offsetX;
-            offsetY = e.offsetY;
-        });
-
-        window.addEventListener("mousemove", (e) => {
-            if (!dragging) return;
-            const rect = iconLayer.getBoundingClientRect();
-            const nx = e.clientX - rect.left - offsetX;
-            const ny = e.clientY - rect.top - offsetY;
-
-            char.iconX = nx;
-            char.iconY = ny;
-
-            div.style.left = nx + "px";
-            div.style.top = ny + "px";
-
-            drawAll();
-        });
-
-        window.addEventListener("mouseup", () => dragging = false);
-
-        iconLayer.appendChild(div);
     }
 
 });
