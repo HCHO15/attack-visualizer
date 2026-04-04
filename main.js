@@ -949,76 +949,78 @@ window.addEventListener("load", () => {
     // アイコン配置（ドラッグ対応）
     // -----------------------------
     function placeIcon(char, x, y) {
-        const div = document.createElement("div");
-        div.className = "character-icon";
+    const div = document.createElement("div");
+    div.className = "character-icon";
 
-        div.style.left = x + "px";
-        div.style.top = y + "px";
-        div.style.backgroundImage = `url(${char.iconPath})`;
+    div.style.left = x + "px";
+    div.style.top = y + "px";
+    div.style.backgroundImage = `url(${char.iconPath})`;
 
-        // バッジ
-        if (char.badgeText) {
-            const badge = document.createElement("div");
-            badge.className = "icon-badge";
-            badge.textContent = char.badgeText;
-            div.appendChild(badge);
-        }
+    // バッジ
+    if (char.badgeText) {
+        const badge = document.createElement("div");
+        badge.className = "icon-badge";
+        badge.textContent = char.badgeText;
+        div.appendChild(badge);
+    }
 
-        // ハイライト
-        if (char.highlight) {
-            div.classList.add("icon-highlight");
-        }
+    // ハイライト
+    if (char.highlight) {
+        div.classList.add("icon-highlight");
+    }
 
-        // Tooltip
-        div.addEventListener("mouseenter", (e) => showTooltip(e, char));
-        div.addEventListener("mouseleave", hideTooltip);
+    // Tooltip
+    div.addEventListener("mouseenter", (e) => showTooltip(e, char));
+    div.addEventListener("mouseleave", hideTooltip);
 
-        // ドラッグ
-        let dragging = false;
-        let offsetX = 0;
-        let offsetY = 0;
+    // -----------------------------
+    // ドラッグ処理（改善版）
+    // -----------------------------
+    let dragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
 
-        div.addEventListener("mousedown", (e) => {
-            dragging = true;
-            offsetX = e.offsetX;
-            offsetY = e.offsetY;
-        });
-
-        window.addEventListener("mousemove", (e) => {
-            if (!dragging) return;
-            const rect = iconLayer.getBoundingClientRect();
-            const nx = e.clientX - rect.left - offsetX;
-            const ny = e.clientY - rect.top - offsetY;
-
-            char.iconX = nx;
-            char.iconY = ny;
-
-            div.style.left = nx + "px";
-            div.style.top = ny + "px";
-        });
-
-        div.addEventListener("mousedown", (e) => {
-    dragging = true;
-    offsetX = e.offsetX;
-    offsetY = e.offsetY;
-
-    // ★ クリックされたキャラを最前面に設定
-    frontCharacter = char;
-
-    // ★ 全アイコンの z-index をリセット
-    document.querySelectorAll(".character-icon").forEach(el => {
-        el.style.zIndex = 1;
+    // ★ mousedown では前面処理をしない（drawAll を呼ばない）
+    div.addEventListener("mousedown", (e) => {
+        dragging = true;
+        offsetX = e.offsetX;
+        offsetY = e.offsetY;
     });
 
-    // ★ このアイコンだけ最前面へ
-    div.style.zIndex = 9999;
+    // ★ click で前面に出す（ドラッグ中は click が発火しないので安全）
+    div.addEventListener("click", () => {
+        frontCharacter = char;
 
-    drawAll();
-});
+        // 全アイコンの z-index をリセット
+        document.querySelectorAll(".character-icon").forEach(el => {
+            el.style.zIndex = 1;
+        });
 
-        window.addEventListener("mouseup", () => dragging = false);
+        // このアイコンだけ最前面へ
+        div.style.zIndex = 9999;
 
-        iconLayer.appendChild(div);
-    }
+        // 再描画（ドラッグ中ではないので安全）
+        drawAll();
+    });
+
+    // ★ ドラッグ中の移動
+    window.addEventListener("mousemove", (e) => {
+        if (!dragging) return;
+
+        const rect = iconLayer.getBoundingClientRect();
+        const nx = e.clientX - rect.left - offsetX;
+        const ny = e.clientY - rect.top - offsetY;
+
+        char.iconX = nx;
+        char.iconY = ny;
+
+        div.style.left = nx + "px";
+        div.style.top = ny + "px";
+    });
+
+    window.addEventListener("mouseup", () => dragging = false);
+
+    iconLayer.appendChild(div);
+}
 
 });
