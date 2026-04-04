@@ -768,7 +768,6 @@ window.addEventListener("load", () => {
     // -----------------------------
     function drawAll() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        iconLayer.innerHTML = "";
 
         autoPlaceTargetIcons();
 
