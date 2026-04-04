@@ -825,7 +825,7 @@ window.addEventListener("load", () => {
 
         const iconX = rightX - 20;
         const iconY = h - 90;
-        placeIcon(c, iconX, iconY);
+        (c, iconX, iconY);
 
         const text = String(c.atk);
         ctx.font = "14px sans-serif";
@@ -893,7 +893,7 @@ window.addEventListener("load", () => {
         const iconX = c.iconX;
         const iconY = c.iconY;
 
-        placeIcon(c, iconX, iconY);
+        (c, iconX, iconY);
 
         const sx = iconX + 20;
         const sy = iconY + 20;
@@ -976,7 +976,7 @@ window.addEventListener("load", () => {
         div.addEventListener("mouseleave", hideTooltip);
 
         // -----------------------------
-        // ドラッグ処理（改良版）
+        // ドラッグ処理
         // -----------------------------
         let dragging = false;
         let offsetX = 0;
@@ -984,14 +984,13 @@ window.addEventListener("load", () => {
 
         div.addEventListener("mousedown", (e) => {
             dragging = true;
-            char._dragging = true;   // ★ ドラッグ中フラグ
-            hideTooltip();           // ★ ドラッグ開始時に tooltip を消す
+            char._dragging = true;
+            hideTooltip();
             offsetX = e.offsetX;
             offsetY = e.offsetY;
         });
 
         div.addEventListener("click", () => {
-            // ドラッグ後の click は発火しないので安全
             frontCharacter = char;
 
             document.querySelectorAll(".character-icon").forEach(el => {
@@ -1016,19 +1015,24 @@ window.addEventListener("load", () => {
             div.style.left = nx + "px";
             div.style.top = ny + "px";
 
-            drawAll(); // ★ 線を追従させる
+            // 線も追従させる
+            drawAll();
         });
 
         window.addEventListener("mouseup", () => {
             dragging = false;
-            char._dragging = false;  // ★ ドラッグ終了
+            char._dragging = false;
         });
 
-        iconLayer.appendChild(div);
         char._iconDiv = div;
     }
 
-    // 位置更新（再利用時）
+    // ★ drawAll() で iconLayer がクリアされた後でも、必ず再度ぶら下げる
+    if (!div.parentNode || div.parentNode !== iconLayer) {
+        iconLayer.appendChild(div);
+    }
+
+    // 位置更新
     div.style.left = x + "px";
     div.style.top = y + "px";
 }
