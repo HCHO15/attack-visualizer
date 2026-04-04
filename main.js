@@ -969,8 +969,10 @@ window.addEventListener("load", () => {
             div.classList.add("icon-highlight");
         }
 
-        // Tooltip
-        div.addEventListener("mouseenter", (e) => showTooltip(e, char));
+        // Tooltip（通常時）
+        div.addEventListener("mouseenter", (e) => {
+            if (!char._dragging) showTooltip(e, char);
+        });
         div.addEventListener("mouseleave", hideTooltip);
 
         // -----------------------------
@@ -982,11 +984,14 @@ window.addEventListener("load", () => {
 
         div.addEventListener("mousedown", (e) => {
             dragging = true;
+            char._dragging = true;   // ★ ドラッグ中フラグ
+            hideTooltip();           // ★ ドラッグ開始時に tooltip を消す
             offsetX = e.offsetX;
             offsetY = e.offsetY;
         });
 
         div.addEventListener("click", () => {
+            // ドラッグ後の click は発火しないので安全
             frontCharacter = char;
 
             document.querySelectorAll(".character-icon").forEach(el => {
@@ -1011,11 +1016,13 @@ window.addEventListener("load", () => {
             div.style.left = nx + "px";
             div.style.top = ny + "px";
 
-            // ★ ドラッグ中も線を更新する
-            drawAll();
+            drawAll(); // ★ 線を追従させる
         });
 
-        window.addEventListener("mouseup", () => dragging = false);
+        window.addEventListener("mouseup", () => {
+            dragging = false;
+            char._dragging = false;  // ★ ドラッグ終了
+        });
 
         iconLayer.appendChild(div);
         char._iconDiv = div;
