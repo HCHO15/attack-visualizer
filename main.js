@@ -949,78 +949,81 @@ window.addEventListener("load", () => {
     // アイコン配置（ドラッグ対応）
     // -----------------------------
     function placeIcon(char, x, y) {
-    const div = document.createElement("div");
-    div.className = "character-icon";
+    // すでにアイコンが存在する場合は再利用
+    let div = char._iconDiv;
+    if (!div) {
+        div = document.createElement("div");
+        div.className = "character-icon";
+        div.style.backgroundImage = `url(${char.iconPath})`;
 
-    div.style.left = x + "px";
-    div.style.top = y + "px";
-    div.style.backgroundImage = `url(${char.iconPath})`;
+        // バッジ
+        if (char.badgeText) {
+            const badge = document.createElement("div");
+            badge.className = "icon-badge";
+            badge.textContent = char.badgeText;
+            div.appendChild(badge);
+        }
 
-    // バッジ
-    if (char.badgeText) {
-        const badge = document.createElement("div");
-        badge.className = "icon-badge";
-        badge.textContent = char.badgeText;
-        div.appendChild(badge);
-    }
+        // ハイライト
+        if (char.highlight) {
+            div.classList.add("icon-highlight");
+        }
 
-    // ハイライト
-    if (char.highlight) {
-        div.classList.add("icon-highlight");
-    }
+        // Tooltip
+        div.addEventListener("mouseenter", (e) => showTooltip(e, char));
+        div.addEventListener("mouseleave", hideTooltip);
 
-    // Tooltip
-    div.addEventListener("mouseenter", (e) => showTooltip(e, char));
-    div.addEventListener("mouseleave", hideTooltip);
+        // -----------------------------
+        // ドラッグ処理（改良版）
+        // -----------------------------
+        let dragging = false;
+        let offsetX = 0;
+        let offsetY = 0;
 
-    // -----------------------------
-    // ドラッグ処理（改善版）
-    // -----------------------------
-    let dragging = false;
-    let offsetX = 0;
-    let offsetY = 0;
-
-    // ★ mousedown では前面処理をしない（drawAll を呼ばない）
-    div.addEventListener("mousedown", (e) => {
-        dragging = true;
-        offsetX = e.offsetX;
-        offsetY = e.offsetY;
-    });
-
-    // ★ click で前面に出す（ドラッグ中は click が発火しないので安全）
-    div.addEventListener("click", () => {
-        frontCharacter = char;
-
-        // 全アイコンの z-index をリセット
-        document.querySelectorAll(".character-icon").forEach(el => {
-            el.style.zIndex = 1;
+        div.addEventListener("mousedown", (e) => {
+            dragging = true;
+            offsetX = e.offsetX;
+            offsetY = e.offsetY;
         });
 
-        // このアイコンだけ最前面へ
-        div.style.zIndex = 9999;
+        div.addEventListener("click", () => {
+            frontCharacter = char;
 
-        // 再描画（ドラッグ中ではないので安全）
-        drawAll();
-    });
+            document.querySelectorAll(".character-icon").forEach(el => {
+                el.style.zIndex = 1;
+            });
 
-    // ★ ドラッグ中の移動
-    window.addEventListener("mousemove", (e) => {
-        if (!dragging) return;
+            div.style.zIndex = 9999;
 
-        const rect = iconLayer.getBoundingClientRect();
-        const nx = e.clientX - rect.left - offsetX;
-        const ny = e.clientY - rect.top - offsetY;
+            drawAll();
+        });
 
-        char.iconX = nx;
-        char.iconY = ny;
+        window.addEventListener("mousemove", (e) => {
+            if (!dragging) return;
 
-        div.style.left = nx + "px";
-        div.style.top = ny + "px";
-    });
+            const rect = iconLayer.getBoundingClientRect();
+            const nx = e.clientX - rect.left - offsetX;
+            const ny = e.clientY - rect.top - offsetY;
 
-    window.addEventListener("mouseup", () => dragging = false);
+            char.iconX = nx;
+            char.iconY = ny;
 
-    iconLayer.appendChild(div);
+            div.style.left = nx + "px";
+            div.style.top = ny + "px";
+
+            // ★ ドラッグ中も線を更新する
+            drawAll();
+        });
+
+        window.addEventListener("mouseup", () => dragging = false);
+
+        iconLayer.appendChild(div);
+        char._iconDiv = div;
+    }
+
+    // 位置更新（再利用時）
+    div.style.left = x + "px";
+    div.style.top = y + "px";
 }
 
 });
