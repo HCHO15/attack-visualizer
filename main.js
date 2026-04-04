@@ -5,8 +5,8 @@ window.addEventListener("load", () => {
     const tooltip = document.getElementById("tooltip");
 
     // キャラデータ
-    const characters = [
-        {
+    const presetCharacters = {
+    1: [
             name: "シロコ＊テラー",
             atk: 11284,
             type: "indicator",
@@ -541,12 +541,9 @@ window.addEventListener("load", () => {
     }
 },
 
-// -----------------------------
-// モモイ（モモイシナジー）（target）
-// -----------------------------
 {
-    name: "モモイ（モモイシナジー）",
-    groupName: "モモイ（モモイシナジー）",
+    name: "モモイ（ミドリシナジー）",
+    groupName: "モモイ",
     atk: 10847,
     type: "target",
     iconPath: "momoi.png",
@@ -620,7 +617,11 @@ window.addEventListener("load", () => {
         SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
     }
 }
-    ];
+        ],
+    2: [],
+    3: []
+};
+
 
     // -----------------------------
     // キャラ名でグループ化
@@ -664,6 +665,28 @@ window.addEventListener("load", () => {
             });
         });
     }
+    function rebuildCharacterList() {
+    const list = document.getElementById("character-list");
+    list.innerHTML = "";
+
+    const groups = groupCharactersByName();
+
+    for (const group in groups) {
+        const label = document.createElement("label");
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = groups[group].some(c => c.visible);
+
+        checkbox.addEventListener("change", () => {
+            groups[group].forEach(c => c.visible = checkbox.checked);
+            drawAll();
+        });
+
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(group));
+        list.appendChild(label);
+    }
+}
 
     // -----------------------------
     // Canvas 初期化
