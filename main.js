@@ -145,7 +145,7 @@ window.addEventListener("load", () => {
     iconX: null,
     iconY: null,
     detail: {
-        固有武器: "固有4<strong>レベル29</strong>",
+        固有武器: "固有4<strong>レベル27</strong>",
         絆: "20.10.1",
         WB: "0",
         スキル: "MMMM",
@@ -237,24 +237,6 @@ window.addEventListener("load", () => {
     detail: {
         固有武器: "固有4<strong>レベル50</strong>",
         絆: "<strong>25</strong>.<strong>20</strong>.1",
-        WB: "0",
-        スキル: "MMMM",
-        装備: "10.10.10.T2",
-        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
-    }
-},
-{
-    name: "イオリ",
-    groupName: "イオリ",
-    atk: 11229,
-    type: "target",
-    iconPath: "iori.png",
-    visible: true,
-    iconX: null,
-    iconY: null,
-    detail: {
-        固有武器: "固有4<strong>レベル60</strong>",
-        絆: "30.<strong>1</strong>.1",
         WB: "0",
         スキル: "MMMM",
         装備: "10.10.10.T2",
@@ -487,7 +469,7 @@ window.addEventListener("load", () => {
 {
     name: "ツルギ",
     groupName: "ツルギ",
-    atk: 14687,
+    atk: 14657,
     type: "target",
     iconPath: "tsurugi.png",
     visible: true,
@@ -506,7 +488,7 @@ window.addEventListener("load", () => {
 {
     name: "水着ヒヨリ",
     groupName: "水着ヒヨリ",
-    atk: 14687,
+    atk: 14393,
     type: "target",
     iconPath: "hiyorimizugi.png",
     visible: true,
@@ -514,18 +496,35 @@ window.addEventListener("load", () => {
     iconY: null,
     detail: {
         固有武器: "固有4レベル60",
-        絆: "30.30.1",
+        絆: "50.50.1",
         WB: "25",
         スキル: "MMMM",
         装備: "10.10.10",
         SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
     }
 },
-
+{
+    name: "水着ヒヨリ",
+    groupName: "水着ヒヨリ",
+    atk: 14102,
+    type: "target",
+    iconPath: "hiyorimizugi.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有4レベル60",
+        絆: "50.50.1",
+        WB: "0",
+        スキル: "MMMM",
+        装備: "10.10.10",
+        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+    }
+},
 {
     name: "モモイ（ミドリシナジー）",
-    groupName: "モモイ",
-    atk: 10847,
+    groupName: "モモミド",
+    atk: 10812,
     type: "target",
     iconPath: "momoi.png",
     visible: true,
@@ -538,14 +537,32 @@ window.addEventListener("load", () => {
         スキル: "MMMM",
         装備: "10.10.10.T2",
         SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+        "※ミドリと編成した場合大体ミドリ＞クロコ"
     }
 },
-
+{
+    name: "ミドリ",
+    groupName: "モモミド",
+    atk: 12154,
+    type: "target",
+    iconPath: "midori.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "<strong>固有1レベル1</strong>",
+        絆: "20.1.1",
+        WB: "0",
+        スキル: "MMMM",
+        装備: "10.10.10.T2",
+        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+    }
+},
 {
     name: "ドレスヒナ",
     groupName: "ドレスヒナ",
-    atk: 15970,
-    type: "target",
+    atk: 15937,
+    type: "indicator",
     iconPath: "hinadress.png",
     visible: true,
     iconX: null,
@@ -562,15 +579,15 @@ window.addEventListener("load", () => {
 {
     name: "ドレスヒナ",
     groupName: "ドレスヒナ",
-    atk: 15480,
-    type: "target",
+    atk: 15447,
+    type: "indicator",
     iconPath: "hinadress.png",
     visible: true,
     iconX: null,
     iconY: null,
     detail: {
         固有武器: "固有4レベル60",
-        絆: "50.30.1",
+        絆: "<strong>30</strong>.<strong>1</strong>.50",
         WB: "25",
         スキル: "MMMM",
         装備: "10.10.10",
@@ -580,15 +597,15 @@ window.addEventListener("load", () => {
 {
     name: "ドレスヒナ",
     groupName: "ドレスヒナ",
-    atk: 15713,
-    type: "target",
+    atk: 15680,
+    type: "indicator",
     iconPath: "hinadress.png",
     visible: true,
     iconX: null,
     iconY: null,
     detail: {
         固有武器: "固有4レベル60",
-        絆: "50.30.30",
+        絆: "30.30.50",
         WB: "25",
         スキル: "MMMM",
         装備: "10.10.10",
