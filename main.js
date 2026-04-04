@@ -470,7 +470,7 @@ window.addEventListener("load", () => {
     name: "ツルギ",
     groupName: "ツルギ",
     atk: 14657,
-    type: "target",
+    type: "indicator",
     iconPath: "tsurugi.png",
     visible: true,
     iconX: null,
