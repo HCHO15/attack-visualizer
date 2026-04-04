@@ -976,8 +976,6 @@ window.addEventListener("load", () => {
 
             div.style.left = nx + "px";
             div.style.top = ny + "px";
-
-            drawAll();
         });
 
         window.addEventListener("mouseup", () => dragging = false);
