@@ -929,7 +929,9 @@ window.addEventListener("load", () => {
             }
 
             // Tooltip
-            div.addEventListener("mouseenter", (e) => showTooltip(e, c));
+            div.addEventListener("mouseenter", (e) => {
+                if (!c._dragging) showTooltip(e, c);
+            });
             div.addEventListener("mouseleave", hideTooltip);
 
             // ドラッグ
@@ -939,8 +941,12 @@ window.addEventListener("load", () => {
 
             div.addEventListener("mousedown", (e) => {
                 dragging = true;
+                c._dragging = true;
+
                 offsetX = e.offsetX;
                 offsetY = e.offsetY;
+
+                hideTooltip();
             });
 
             window.addEventListener("mousemove", (e) => {
@@ -959,7 +965,10 @@ window.addEventListener("load", () => {
                 drawAll(); // 線を追従
             });
 
-            window.addEventListener("mouseup", () => dragging = false);
+            window.addEventListener("mouseup", () => 
+                dragging = false);
+            c._dragging = false;
+
 
             iconLayer.appendChild(div);
             c._iconDiv = div;
