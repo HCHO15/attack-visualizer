@@ -612,7 +612,99 @@ window.addEventListener("load", () => {
     }
 }     
         ],
-        2: [],
+        2: [
+{
+    name: "アツコ(ミチルNS)",
+    groupName: "アツコ",
+    atk: 7537,
+    type: "indicator",
+    iconPath: "atsuko.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有2レベル40",
+        絆: "20.20.1",
+        WB: "25",
+        スキル: "MMMM",
+        装備: "10.10.10",
+        SP: "ドレスミチル（固有2-40絆20.20.1装備10.10.10）、サキ（固有3-50絆20.20.30WB25装備10.10.10）"
+    }
+},
+{
+    name: "アツコ(ミチルNS)",
+    groupName: "アツコ",
+    atk: 7648,
+    type: "indicator",
+    iconPath: "atsuko.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有3レベル50",
+        絆: "30.30.1",
+        WB: "25",
+        スキル: "MMMM",
+        装備: "10.10.10",
+        SP: "ドレスミチル（固有2-40絆20.20.1装備10.10.10）、サキ（固有3-50絆20.20.30WB25装備10.10.10）"
+    }
+},
+{
+    name: "アツコ(ミチルNS)",
+    groupName: "アツコ",
+    atk: 7758,
+    type: "indicator",
+    iconPath: "atsuko.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有4レベル60",
+        絆: "50.50.1",
+        WB: "25",
+        スキル: "MMMM",
+        装備: "10.10.10",
+        SP: "ドレスミチル（固有2-40絆20.20.1装備10.10.10）、サキ（固有3-50絆20.20.30WB25装備10.10.10）"
+    }
+},
+{
+    name: "チェリノ(ミチルNS)",
+    groupName: "チェリノ",
+    atk: 7530,
+    type: "target",
+    iconPath: "cherino.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "なし星3",
+        絆: "20.20.1",
+        WB: "0",
+        スキル: "MMMM",
+        装備: "10.10.10",
+        SP: "ドレスミチル（固有2-40絆20.20.1装備10.10.10）、サキ（固有3-50絆20.20.30WB25装備10.10.10）"
+    }
+},
+{
+    name: "チェリノ(ミチルNS)",
+    groupName: "チェリノ",
+    atk: 7526,
+    type: "target",
+    iconPath: "cherino.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "なし星3",
+        絆: "30.20.1",
+        WB: "0",
+        スキル: "MM3M",
+        装備: "10.10.10",
+        SP: "ドレスミチル（固有2-40絆20.20.1装備10.10.10）、サキ（固有3-50絆20.20.30WB25装備10.10.10）"
+    }
+}
+            
+        ],
         3: []
     };
 
