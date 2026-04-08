@@ -1145,72 +1145,71 @@ window.addEventListener("load", () => {
     // アイコン初期生成（再利用方式）
     // -----------------------------
     function initializeIcons() {
-        iconLayer.innerHTML = ""; // ← 初期化時のみクリア
+    // 初期化時のみクリア
+    iconLayer.innerHTML = "";
 
-        characters.forEach(c => {
-            const div = document.createElement("div");
-            div.className = "character-icon";
-            div.style.backgroundImage = `url(${c.iconPath})`;
+    characters.forEach(c => {
+        const div = document.createElement("div");
+        div.className = "character-icon";
+        div.style.backgroundImage = `url(${c.iconPath})`;
 
-            // バッジ
-            if (c.badgeText) {
-                const badge = document.createElement("div");
-                badge.className = "icon-badge";
-                badge.textContent = c.badgeText;
-                div.appendChild(badge);
-            }
+        // バッジ
+        if (c.badgeText) {
+            const badge = document.createElement("div");
+            badge.className = "icon-badge";
+            badge.textContent = c.badgeText;
+            div.appendChild(badge);
+        }
 
-            // ハイライト
-            if (c.highlight) {
-                div.classList.add("icon-highlight");
-            }
+        // ハイライト
+        if (c.highlight) {
+            div.classList.add("icon-highlight");
+        }
 
-            // Tooltip
-            div.addEventListener("mouseenter", (e) => {
-                if (!c._dragging) showTooltip(e, c);
-            });
-            div.addEventListener("mouseleave", hideTooltip);
-
-            // ドラッグ
-            let dragging = false;
-            let offsetX = 0;
-            let offsetY = 0;
-
-            div.addEventListener("mousedown", (e) => {
-                dragging = true;
-                c._dragging = true;
-
-                offsetX = e.offsetX;
-                offsetY = e.offsetY;
-
-                hideTooltip();
-            });
-
-            window.addEventListener("mousemove", (e) => {
-                if (!dragging) return;
-
-                const rect = iconLayer.getBoundingClientRect();
-                const nx = e.clientX - rect.left - offsetX;
-                const ny = e.clientY - rect.top - offsetY;
-
-                c.iconX = nx;
-                c.iconY = ny;
-
-                div.style.left = nx + "px";
-                div.style.top = ny + "px";
-
-                drawAll(); // 線を追従
-            });
-
-            window.addEventListener("mouseup", () => 
-                dragging = false);
-            c._dragging = false;
-
-
-            iconLayer.appendChild(div);
-            c._iconDiv = div;
+        // Tooltip（ドラッグ中は表示しない）
+        div.addEventListener("mouseenter", (e) => {
+            if (!c._dragging) showTooltip(e, c);
         });
-    }
+        div.addEventListener("mouseleave", hideTooltip);
+
+        // ドラッグ制御
+        let dragging = false;
+        let offsetX = 0;
+        let offsetY = 0;
+
+        div.addEventListener("mousedown", (e) => {
+            dragging = true;
+            c._dragging = true;   // ★ ドラッグ開始フラグ
+            offsetX = e.offsetX;
+            offsetY = e.offsetY;
+            hideTooltip();        // ★ ドラッグ開始時に tooltip を消す
+        });
+
+        window.addEventListener("mousemove", (e) => {
+            if (!dragging) return;
+
+            const rect = iconLayer.getBoundingClientRect();
+            const nx = e.clientX - rect.left - offsetX;
+            const ny = e.clientY - rect.top - offsetY;
+
+            c.iconX = nx;
+            c.iconY = ny;
+
+            div.style.left = nx + "px";
+            div.style.top = ny + "px";
+
+            drawAll();            // ★ 線を追従
+        });
+
+        window.addEventListener("mouseup", () => {
+            dragging = false;
+            c._dragging = false;  // ★ これがないと tooltip が復活しない
+        });
+
+        iconLayer.appendChild(div);
+        c._iconDiv = div;
+    });
+}
 
     // -----------------------------
     // アイコン位置更新（再利用方式）
