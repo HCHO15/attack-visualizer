@@ -702,7 +702,152 @@ window.addEventListener("load", () => {
         装備: "10.10.10",
         SP: "ドレスミチル（固有2-40絆20.20.1装備10.10.10）、サキ（固有3-50絆20.20.30WB25装備10.10.10）"
     }
+},
+{
+    name: "マリナ(ミチルNS)",
+    groupName: "マリナ",
+    atk: 7805,
+    type: "target",
+    iconPath: "marina.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有4レベル60",
+        絆: "50.50.1",
+        WB: "25",
+        スキル: "MMMM",
+        装備: "10.10.10",
+        SP: "ドレスミチル（固有2-40絆20.20.1装備10.10.10）、サキ（固有3-50絆20.20.30WB25装備10.10.10）"
+    }
+},
+{
+    name: "マリナ(ミチルNS)",
+    groupName: "マリナ",
+    atk: 7683,
+    type: "target",
+    iconPath: "marina.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有4レベル60",
+        絆: "50.50.1",
+        WB: "0",
+        スキル: "MMMM",
+        装備: "10.10.10",
+        SP: "ドレスミチル（固有2-40絆20.20.1装備10.10.10）、サキ（固有3-50絆20.20.30WB25装備10.10.10）"
+    }
+},
+{
+    name: "マリナ(ミチルNS)",
+    groupName: "マリナ",
+    atk: 7694,
+    type: "target",
+    iconPath: "marina.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有4レベル60",
+        絆: "40.40.1",
+        WB: "25",
+        スキル: "MMMM",
+        装備: "10.10.10",
+        SP: "ドレスミチル（固有2-40絆20.20.1装備10.10.10）、サキ（固有3-50絆20.20.30WB25装備10.10.10）"
+    }
+},
+{
+    name: "マリナ(ミチルNS)",
+    groupName: "マリナ",
+    atk: 7572,
+    type: "target",
+    iconPath: "marina.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有4レベル60",
+        絆: "40.40.1",
+        WB: "0",
+        スキル: "MMMM",
+        装備: "10.10.10",
+        SP: "ドレスミチル（固有2-40絆20.20.1装備10.10.10）、サキ（固有3-50絆20.20.30WB25装備10.10.10）"
+    }
+},
+{
+    name: "マリナ(ミチルNS)",
+    groupName: "マリナ",
+    atk: 7639,
+    type: "target",
+    iconPath: "marina.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有4レベル60",
+        絆: "30.30.1",
+        WB: "25",
+        スキル: "MMMM",
+        装備: "10.10.10",
+        SP: "ドレスミチル（固有2-40絆20.20.1装備10.10.10）、サキ（固有3-50絆20.20.30WB25装備10.10.10）"
+    }
+},
+{
+    name: "マリナ(ミチルNS)",
+    groupName: "マリナ",
+    atk: 7517,
+    type: "target",
+    iconPath: "marina.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有4レベル60",
+        絆: "30.30.1",
+        WB: "0",
+        スキル: "MMMM",
+        装備: "10.10.10",
+        SP: "ドレスミチル（固有2-40絆20.20.1装備10.10.10）、サキ（固有3-50絆20.20.30WB25装備10.10.10）"
+    }
+},
+{
+    name: "マリナ(ミチルNS)",
+    groupName: "マリナ",
+    atk: 7698,
+    type: "target",
+    iconPath: "marina.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有3レベル50",
+        絆: "50.50.1",
+        WB: "25",
+        スキル: "MMMM",
+        装備: "10.10.10",
+        SP: "ドレスミチル（固有2-40絆20.20.1装備10.10.10）、サキ（固有3-50絆20.20.30WB25装備10.10.10）"
+    }
+},
+{
+    name: "マリナ(ミチルNS)",
+    groupName: "マリナ",
+    atk: 7576,
+    type: "target",
+    iconPath: "marina.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "固有3レベル50",
+        絆: "50.50.1",
+        WB: "0",
+        スキル: "MMMM",
+        装備: "10.10.10",
+        SP: "ドレスミチル（固有2-40絆20.20.1装備10.10.10）、サキ（固有3-50絆20.20.30WB25装備10.10.10）"
+    }
 }
+            
             
         ],
         3: []
