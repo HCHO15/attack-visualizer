@@ -119,7 +119,7 @@ body {
     top: -4px;
     right: -4px;
     display: flex;
-    gap: 1px; /* ★ 星同士の間隔を短く */
+    gap: 1px; /* 間隔を短く */
     pointer-events: none;
 }
 
@@ -129,23 +129,33 @@ body {
     font-weight: bold;
     color: #4db8ff; /* ベースの青 */
 
-    /* ★ 外縁（縁取り） */
+    /* ★ 外縁（細めに調整） */
     text-shadow:
-        -1px -1px 0 #ffffff,
-         1px -1px 0 #ffffff,
-        -1px  1px 0 #ffffff,
-         1px  1px 0 #ffffff;
+        -0.5px -0.5px 0 #ffffff,
+         0.5px -0.5px 0 #ffffff,
+        -0.5px  0.5px 0 #ffffff,
+         0.5px  0.5px 0 #ffffff;
 
-    /* ★ 光沢（グラデーション） */
+    /* ★ 光沢（文字を透明化しない方式） */
+    position: relative;
+}
+
+.icon-stars .star::after {
+    content: "★";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* 上部だけ白く光らせる */
     background: linear-gradient(
         to bottom,
-        rgba(255,255,255,0.9) 0%,
-        rgba(255,255,255,0.4) 40%,
-        rgba(0,0,0,0.0) 60%
+        rgba(255,255,255,0.8) 0%,
+        rgba(255,255,255,0.0) 60%
     );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 
-    /* 光沢を強調するための影 */
-    filter: drop-shadow(0 0 2px rgba(0,0,0,0.4));
+    -webkit-background-clip: text;
+    color: transparent;
+    pointer-events: none;
 }
