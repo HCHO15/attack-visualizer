@@ -113,18 +113,39 @@ body {
     box-shadow: 0 0 6px rgba(255, 255, 0, 0.8);
 }
 
+/* 星バッジのコンテナ */
 .icon-stars {
     position: absolute;
     top: -4px;
     right: -4px;
     display: flex;
-    gap: 2px;
+    gap: 1px; /* ★ 星同士の間隔を短く */
     pointer-events: none;
 }
 
+/* 星そのもの */
 .icon-stars .star {
-    color: #3fa9f5; /* 青色 */
     font-size: 14px;
     font-weight: bold;
-    text-shadow: 0 0 2px rgba(0,0,0,0.4);
+    color: #4db8ff; /* ベースの青 */
+
+    /* ★ 外縁（縁取り） */
+    text-shadow:
+        -1px -1px 0 #ffffff,
+         1px -1px 0 #ffffff,
+        -1px  1px 0 #ffffff,
+         1px  1px 0 #ffffff;
+
+    /* ★ 光沢（グラデーション） */
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.9) 0%,
+        rgba(255,255,255,0.4) 40%,
+        rgba(0,0,0,0.0) 60%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* 光沢を強調するための影 */
+    filter: drop-shadow(0 0 2px rgba(0,0,0,0.4));
 }
