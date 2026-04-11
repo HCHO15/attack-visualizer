@@ -619,6 +619,7 @@ window.addEventListener("load", () => {
     atk: 7537,
     type: "indicator",
     iconPath: "atsuko.png",
+    starCount: 2,
     visible: true,
     iconX: null,
     iconY: null,
@@ -637,6 +638,7 @@ window.addEventListener("load", () => {
     atk: 7648,
     type: "indicator",
     iconPath: "atsuko.png",
+    starCount: 3,
     visible: true,
     iconX: null,
     iconY: null,
@@ -655,6 +657,7 @@ window.addEventListener("load", () => {
     atk: 7758,
     type: "indicator",
     iconPath: "atsuko.png",
+    starCount: 4,
     visible: true,
     iconX: null,
     iconY: null,
@@ -709,6 +712,7 @@ window.addEventListener("load", () => {
     atk: 7805,
     type: "target",
     iconPath: "marina.png",
+    starCount: 4,
     visible: true,
     iconX: null,
     iconY: null,
@@ -727,6 +731,7 @@ window.addEventListener("load", () => {
     atk: 7683,
     type: "target",
     iconPath: "marina.png",
+    starCount: 4,
     visible: true,
     iconX: null,
     iconY: null,
@@ -745,6 +750,7 @@ window.addEventListener("load", () => {
     atk: 7694,
     type: "target",
     iconPath: "marina.png",
+    starCount: 4,
     visible: true,
     iconX: null,
     iconY: null,
@@ -763,6 +769,7 @@ window.addEventListener("load", () => {
     atk: 7572,
     type: "target",
     iconPath: "marina.png",
+    starCount: 4,
     visible: true,
     iconX: null,
     iconY: null,
@@ -781,6 +788,7 @@ window.addEventListener("load", () => {
     atk: 7639,
     type: "target",
     iconPath: "marina.png",
+    starCount: 4,
     visible: true,
     iconX: null,
     iconY: null,
@@ -799,6 +807,7 @@ window.addEventListener("load", () => {
     atk: 7517,
     type: "target",
     iconPath: "marina.png",
+    starCount: 4,
     visible: true,
     iconX: null,
     iconY: null,
@@ -817,6 +826,7 @@ window.addEventListener("load", () => {
     atk: 7698,
     type: "target",
     iconPath: "marina.png",
+    starCount: 3,
     visible: true,
     iconX: null,
     iconY: null,
@@ -835,6 +845,7 @@ window.addEventListener("load", () => {
     atk: 7576,
     type: "target",
     iconPath: "marina.png",
+    starCount: 3,
     visible: true,
     iconX: null,
     iconY: null,
@@ -857,6 +868,7 @@ window.addEventListener("load", () => {
         atk: 6565,
         type: "indicator",
         iconPath: "atsuko.png",
+        starCount: 2,
         visible: true,
         iconX: null,
         iconY: null,
@@ -875,6 +887,7 @@ window.addEventListener("load", () => {
         atk: 6667,
         type: "indicator",
         iconPath: "atsuko.png",
+        starCount: 3,
         visible: true,
         iconX: null,
         iconY: null,
@@ -893,6 +906,7 @@ window.addEventListener("load", () => {
         atk: 6767,
         type: "indicator",
         iconPath: "atsuko.png",
+        starCount: 4,
         visible: true,
         iconX: null,
         iconY: null,
@@ -931,6 +945,7 @@ window.addEventListener("load", () => {
         atk: 6777,
         type: "target",
         iconPath: "marina.png",
+        starCount: 4,
         visible: true,
         iconX: null,
         iconY: null,
@@ -949,6 +964,7 @@ window.addEventListener("load", () => {
         atk: 6667,
         type: "target",
         iconPath: "marina.png",
+        starCount: 4,
         visible: true,
         iconX: null,
         iconY: null,
@@ -967,6 +983,7 @@ window.addEventListener("load", () => {
         atk: 6677,
         type: "target",
         iconPath: "marina.png",
+        starCount: 4,
         visible: true,
         iconX: null,
         iconY: null,
@@ -985,6 +1002,7 @@ window.addEventListener("load", () => {
         atk: 6566,
         type: "target",
         iconPath: "marina.png",
+        starCount: 4,
         visible: true,
         iconX: null,
         iconY: null,
@@ -1003,6 +1021,7 @@ window.addEventListener("load", () => {
         atk: 6627,
         type: "target",
         iconPath: "marina.png",
+        starCount: 4,
         visible: true,
         iconX: null,
         iconY: null,
@@ -1021,6 +1040,7 @@ window.addEventListener("load", () => {
         atk: 6516,
         type: "target",
         iconPath: "marina.png",
+        starCount: 4,
         visible: true,
         iconX: null,
         iconY: null,
@@ -1039,6 +1059,7 @@ window.addEventListener("load", () => {
         atk: 6680,
         type: "target",
         iconPath: "marina.png",
+        starCount: 3,
         visible: true,
         iconX: null,
         iconY: null,
@@ -1057,6 +1078,7 @@ window.addEventListener("load", () => {
         atk: 6570,
         type: "target",
         iconPath: "marina.png",
+        starCount: 3,
         visible: true,
         iconX: null,
         iconY: null,
@@ -1379,6 +1401,21 @@ window.addEventListener("load", () => {
             badge.textContent = c.badgeText;
             div.appendChild(badge);
         }
+
+        // ★ 星バッジ（右上）
+if (c.starCount && c.starCount > 0) {
+    const starBox = document.createElement("div");
+    starBox.className = "icon-stars";
+
+    for (let i = 0; i < c.starCount; i++) {
+        const s = document.createElement("div");
+        s.className = "star";
+        s.textContent = "★";
+        starBox.appendChild(s);
+    }
+
+    div.appendChild(starBox);
+}
 
         // ハイライト
         if (c.highlight) {
