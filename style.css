@@ -123,16 +123,15 @@ body {
     pointer-events: none;
 }
 
-/* 星そのもの */
+/* 星そのもの（外縁なし） */
 .icon-stars .star {
     font-size: 14px;
     font-weight: bold;
     color: #4db8ff; /* ベースの青 */
-
-    /* ★ 光沢（文字を透明化しない方式） */
     position: relative;
 }
 
+/* 光沢レイヤー（外縁なし） */
 .icon-stars .star::after {
     content: "★";
     position: absolute;
@@ -141,10 +140,10 @@ body {
     width: 100%;
     height: 100%;
 
-    /* 上部だけ白く光らせる */
+    /* 上部だけ白く光らせる（控えめ） */
     background: linear-gradient(
         to bottom,
-        rgba(255,255,255,0.8) 0%,
+        rgba(255,255,255,0.7) 0%,
         rgba(255,255,255,0.0) 60%
     );
 
