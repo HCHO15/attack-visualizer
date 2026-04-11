@@ -129,13 +129,6 @@ body {
     font-weight: bold;
     color: #4db8ff; /* ベースの青 */
 
-    /* ★ 外縁（細めに調整） */
-    text-shadow:
-        -0.5px -0.5px 0 #ffffff,
-         0.5px -0.5px 0 #ffffff,
-        -0.5px  0.5px 0 #ffffff,
-         0.5px  0.5px 0 #ffffff;
-
     /* ★ 光沢（文字を透明化しない方式） */
     position: relative;
 }
