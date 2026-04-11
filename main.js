@@ -558,6 +558,25 @@ window.addEventListener("load", () => {
     }
 },
 {
+    name: "ミドリ",
+    groupName: "モモミド",
+    atk: 10862,
+    type: "target",
+    iconPath: "midori.png",
+    visible: true,
+    iconX: null,
+    iconY: null,
+    detail: {
+        固有武器: "<strong>固有1レベル1</strong>",
+        絆: "50.50.1",
+        WB: "0",
+        スキル: "MMMM",
+        装備: "10.10.10.<strong>T0</strong>",
+        SP: "シロコ（固有3-50絆40.30.30WB25装備10.10.10）、サツキ（固有3-50絆40.30.30WB25装備10.10.10）"
+    }
+},
+            
+{
     name: "ドレスヒナ",
     groupName: "ドレスヒナ",
     atk: 15937,
