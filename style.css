@@ -112,3 +112,19 @@ body {
     border: 3px solid yellow;
     box-shadow: 0 0 6px rgba(255, 255, 0, 0.8);
 }
+
+.icon-stars {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    display: flex;
+    gap: 2px;
+    pointer-events: none;
+}
+
+.icon-stars .star {
+    color: #3fa9f5; /* 青色 */
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: 0 0 2px rgba(0,0,0,0.4);
+}
